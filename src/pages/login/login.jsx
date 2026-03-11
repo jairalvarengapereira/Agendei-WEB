@@ -96,7 +96,12 @@ function Login() {
 
         {/* Coluna da Imagem - Agora sem classes que escondem o elemento */}
         <div className="col-sm-7">
-          <img src={fundo} className="background-login" alt="Fundo de login" />
+          <img
+            src={fundo}
+            className="background-login img-fluid"
+            alt="Fundo de login"
+          />
+          {/* <img src={fundo} className="background-login" alt="Fundo de login" /> */}
         </div>
       </div>
     </div>
