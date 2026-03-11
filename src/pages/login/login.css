@@ -1,28 +1,30 @@
-.form-signin{
-  width: 400;
-  padding: 15px;
-}
-
-.background-login{
-  object-fit: cover;
+/* Container principal do formulário */
+.frm-signin {
   width: 100%;
-  height: 100vh;
-  object-position: left;
+  max-width: 400px;
+  padding: 15px;
+  margin: auto;
 }
 
-.logo{
+/* Ajuste da logo */
+.logo {
   width: 250px;
+  height: auto;
 }
 
-/* Media Query para Mobile (telas menores que 576px) */
+/* Configuração da imagem de fundo */
+.background-login {
+  width: 100%;
+  height: 100vh; /* Altura total no desktop */
+  object-fit: cover;
+  object-position: left;
+  display: block;
+}
+
+/* Media Query para dispositivos móveis (telas abaixo de 576px) */
 @media (max-width: 575.98px) {
   .background-login {
-    height: 40vh; /* No celular, a imagem ocupa apenas 40% da altura da tela */
-    object-position: center;
-  }
-  
-  .row {
-    margin-right: 0;
-    margin-left: 0;
+    height: 300px; /* Reduz a altura para a imagem não ocupar a tela toda */
+    object-position: center; /* Centraliza o foco da imagem */
   }
 }
