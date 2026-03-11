@@ -13,3 +13,16 @@
 .logo{
   width: 250px;
 }
+
+/* Media Query para Mobile (telas menores que 576px) */
+@media (max-width: 575.98px) {
+  .background-login {
+    height: 40vh; /* No celular, a imagem ocupa apenas 40% da altura da tela */
+    object-position: center;
+  }
+  
+  .row {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
