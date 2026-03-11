@@ -1,4 +1,4 @@
-/* Container principal do formulário */
+/* Container do form */
 .frm-signin {
   width: 100%;
   max-width: 400px;
@@ -6,25 +6,26 @@
   margin: auto;
 }
 
-/* Ajuste da logo */
 .logo {
   width: 250px;
-  height: auto;
 }
 
-/* Configuração da imagem de fundo */
+/* A MÁGICA ESTÁ AQUI: */
 .background-login {
   width: 100%;
-  height: 100vh; /* Altura total no desktop */
+  height: 100%;
   object-fit: cover;
   object-position: left;
   display: block;
+  /* Define uma proporção que funcione bem no desktop */
+  aspect-ratio: 16 / 9; 
 }
 
-/* Media Query para dispositivos móveis (telas abaixo de 576px) */
+/* No mobile, o Bootstrap empilha as colunas. 
+   Vamos forçar a altura a ser proporcional ao dispositivo */
 @media (max-width: 575.98px) {
   .background-login {
-    height: 300px; /* Reduz a altura para a imagem não ocupar a tela toda */
-    object-position: center; /* Centraliza o foco da imagem */
+    height: 300px; /* Altura fixa garantida no celular */
+    aspect-ratio: auto; /* Desativa a proporção do desktop para respeitar o height */
   }
 }
