@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:3001",
+  baseURL: "https://agendei-api-53h2.onrender.com",
+  // baseURL: "http://localhost:3001",
 });
 
 // Interceptador para adicionar o token em todas as requisições
