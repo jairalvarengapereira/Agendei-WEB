@@ -51,21 +51,22 @@ function Doctors() {
     }
   }
 
-  async function DeleteDoctors(id) {
-    try {
-      await api.delete('/doctors/' + id);
-      // Atualiza a lista de médicos removendo o médico excluído
-      setDoctors(doctors.filter(doc => doc.id_doctor !== id));
-    } catch (error) {
-      if (error.response?.data.error) {
-        if (error.response.status === 401) {
-          navigate("/doctors");
-        }
-      } else {
-        alert("Erro ao excluir dados.");
-      }
+async function DeleteDoctors(id) {
+  try {
+    await api.delete("/doctors/" + id);
+    setDoctors(doctors.filter((doc) => doc.id_doctor !== id));
+  } catch (error) {
+    if (error.response?.status === 401) {
+      navigate("/");
+    } else if (error.response?.status === 409) {
+      alert(
+        "Este médico não pode ser excluído pois possui serviços ou consultas vinculadas. Remova os vínculos antes de excluir."
+      );
+    } else {
+      alert("Erro ao excluir médico. Tente novamente mais tarde.");
     }
   }
+}
 
   function changeDoctor(e) {
     setIdDoctor(e.target.value);
