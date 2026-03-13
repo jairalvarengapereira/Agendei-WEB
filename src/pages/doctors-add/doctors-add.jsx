@@ -12,29 +12,32 @@ function DoctorsAdd() {
   const [allServices, setAllServices] = useState([]);
   const [selectedServices, setSelectedServices] = useState([]);
 
-  async function loadDoctor(id) {
-    try {
-      const response = await api.get(`/doctors/${id}`);
-      if (response.data) {
-        const doctorData = Array.isArray(response.data)
-          ? response.data[0]
-          : response.data;
-        setDoctor({ ...doctorData, specialty: doctorData.specialty ?? "" });
-      }
-      const servResponse = await api.get(`/doctors/${id}/services`);
-      if (servResponse.data) {
-        setSelectedServices(
-          servResponse.data.map((s) => ({
-            id_service: s.id_service,
-            description: s.description,
-            price: s.price,
-          }))
-        );
-      }
-    } catch (error) {
-      alert("Erro ao carregar médico");
+async function loadDoctor(id) {
+  try {
+    const response = await api.get(`/doctors/${id}`);
+    if (response.data) {
+      const doctorData = Array.isArray(response.data)
+        ? response.data[0]
+        : response.data;
+      setDoctor({
+        ...doctorData,
+        specialty: doctorData.id_service_specialty ?? "",
+      });
     }
+    const servResponse = await api.get(`/doctors/${id}/services`);
+    if (servResponse.data) {
+      setSelectedServices(
+        servResponse.data.map((s) => ({
+          id_service: s.id_service,
+          description: s.description,
+          price: s.price,
+        }))
+      );
+    }
+  } catch (error) {
+    alert("Erro ao carregar médico");
   }
+}
 
   async function loadAllServices() {
     try {
@@ -165,8 +168,8 @@ function DoctorsAdd() {
               }
             >
               <option value="">Selecione a especialidade</option>
-              {allServices.map((s) => (
-                <option key={s.id_service} value={s.description}>
+              {selectedServices.map((s) => (
+                <option key={s.id_service} value={s.id_service}>
                   {s.description}
                 </option>
               ))}
