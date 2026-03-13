@@ -35,14 +35,8 @@ function Services() {
       title: "Exclusão",
       message: "Deseja mesmo excluir esse serviço?",
       buttons: [
-        {
-          label: "Sim",
-          onClick: () => DeleteService(id_service),
-        },
-        {
-          label: "Não",
-          onClick: () => {},
-        },
+        { label: "Sim", onClick: () => DeleteService(id_service) },
+        { label: "Não", onClick: () => {} },
       ],
     });
   }
@@ -71,16 +65,17 @@ function Services() {
   return (
     <div className="container-fluid mt-page">
       <Navbar />
-
       <div className="d-flex justify-content-between align-items-center">
         <div>
           <h2 className="d-inline">Serviços</h2>
-          <Link to="/services/add" className="btn btn-outline-primary ms-5 mb-2">
+          <Link
+            to="/services/add"
+            className="btn btn-outline-primary ms-5 mb-2"
+          >
             Novo Serviço
           </Link>
         </div>
       </div>
-
       <div>
         <table className="table table-hover">
           <thead className="bold">
