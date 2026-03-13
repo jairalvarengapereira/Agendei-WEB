@@ -8,6 +8,8 @@ import DoctorsAdd from "./pages/doctors-add/doctors-add.jsx";
 import Users from "./pages/users/users.jsx";
 import UsersAdd from "./pages/users-add/users-add.jsx";
 import Profile from "./pages/profile/profile.jsx";
+import Services from "./pages/services/services.jsx";
+import ServicesAdd from "./pages/services-add/services-add.jsx";
 
 function Rotas() {
   return (
@@ -33,8 +35,11 @@ function Rotas() {
         {/* Users (Pacientes) */}
         <Route path="/users/" element={<Users />} />
         <Route path="/users/add" element={<UsersAdd />} />
-        <Route path="/users/edit/:id_user" element={<UsersAdd />} /> Adicionei
-        essa linha
+        <Route path="/users/edit/:id_user" element={<UsersAdd />} />
+        {/* Services (Serviços) */}
+        <Route path="/services" element={<Services />} />
+        <Route path="/services/add" element={<ServicesAdd />} />
+        <Route path="/services/edit/:id_service" element={<ServicesAdd />} />
       </Routes>
     </BrowserRouter>
   );
