@@ -116,7 +116,7 @@ async function DeleteDoctors(id) {
           <thead className="bold">
             <tr>
               <th scope="col">Nome</th>
-              <th scope="col">Especialidade</th>
+              <th scope="col">Especialidade Principal</th>
               <th scope="col" className="col-buttons"></th>
             </tr>
           </thead>
