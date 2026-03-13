@@ -24,9 +24,7 @@ function DoctorsAdd() {
           name: doctorData.name,
           icon: doctorData.icon,
         });
-        setSpecialtyPrincipal(doctorData.id_service_specialty ?? "");
-        console.log("doctorData:", doctorData);
-        console.log("id_service_specialty:", doctorData.id_service_specialty);
+        setSpecialtyPrincipal(parseInt(doctorData.id_service_specialty) || "");
       }
       const servResponse = await api.get(`/doctors/${id}/services`);
       if (servResponse.data) {
@@ -229,7 +227,7 @@ function DoctorsAdd() {
             <select
               className="form-select"
               value={specialtyPrincipal}
-              onChange={(e) => setSpecialtyPrincipal(e.target.value)}
+              onChange={(e) => setSpecialtyPrincipal(parseInt(e.target.value))}
             >
               <option value="">Selecione a especialidade</option>
               {selectedServices.map((s) => (
