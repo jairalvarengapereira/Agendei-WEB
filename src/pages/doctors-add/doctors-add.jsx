@@ -20,7 +20,8 @@ async function loadDoctor(id) {
         ? response.data[0]
         : response.data;
       setDoctor({
-        ...doctorData,
+        name: doctorData.name,
+        icon: doctorData.icon,
         specialty: doctorData.id_service_specialty ?? "",
       });
     }
