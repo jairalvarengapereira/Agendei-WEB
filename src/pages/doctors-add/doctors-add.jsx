@@ -137,6 +137,10 @@ function DoctorsAdd() {
     init();
   }, [id_doctor]);
 
+  console.log("selectedServices:", selectedServices);
+  console.log("specialtyPrincipal:", specialtyPrincipal);
+  console.log("tipo:", typeof specialtyPrincipal);
+
   return (
     <>
       <Navbar />
