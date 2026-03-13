@@ -17,6 +17,11 @@ function DoctorsAdd() {
   async function loadDoctor(id) {
     try {
       const response = await api.get(`/doctors/${id}`);
+      console.log(
+        "specialtyPrincipal setado:",
+        String(doctorData.id_service_specialty)
+      );
+      console.log("selectedServices carregados:", servResponse.data);
       if (response.data) {
         const doctorData = Array.isArray(response.data)
           ? response.data[0]
