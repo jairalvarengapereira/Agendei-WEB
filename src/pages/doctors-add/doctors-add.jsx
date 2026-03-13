@@ -23,18 +23,41 @@ async function loadDoctor(id) {
         name: doctorData.name,
         icon: doctorData.icon,
       });
-      setSpecialtyPrincipal(String(doctorData.id_service_specialty) || "");
-    }
 
-    const servResponse = await api.get(`/doctors/${id}/services`);
-    if (servResponse.data) {
-      setSelectedServices(
-        servResponse.data.map((s) => ({
+      // Primeiro carrega os serviços vinculados ao médico
+      const servResponse = await api.get(`/doctors/${id}/services`);
+      if (servResponse.data) {
+        const servicos = servResponse.data.map((s) => ({
           id_service: s.id_service,
           description: s.description,
           price: s.price,
-        }))
-      );
+        }));
+
+        // Verifica se a especialidade principal já está na lista
+        const especialidadeJaExiste = servicos.find(
+          (s) => s.id_service === doctorData.id_service_specialty
+        );
+
+        // Se não estiver, busca e adiciona na lista sem preço
+        if (!especialidadeJaExiste && doctorData.id_service_specialty) {
+          const espResponse = await api.get(`/services`);
+          const espPrincipal = espResponse.data.find(
+            (s) => s.id_service === doctorData.id_service_specialty
+          );
+          if (espPrincipal) {
+            servicos.unshift({
+              id_service: espPrincipal.id_service,
+              description: espPrincipal.description,
+              price: "",
+            });
+          }
+        }
+
+        setSelectedServices(servicos);
+      }
+
+      // Seta a especialidade principal depois que a lista está pronta
+      setSpecialtyPrincipal(String(doctorData.id_service_specialty) || "");
     }
   } catch (error) {
     console.error("Erro:", error.response?.data || error.message);
