@@ -113,12 +113,22 @@ function DoctorsAdd() {
     }
   }
 
-  useEffect(() => {
-    loadAllServices();
-  }, []);
+  // useEffect(() => {
+  //   loadAllServices();
+  // }, []);
+
+  // useEffect(() => {
+  //   if (id_doctor) loadDoctor(id_doctor);
+  // }, [id_doctor]);
 
   useEffect(() => {
-    if (id_doctor) loadDoctor(id_doctor);
+    async function init() {
+      await loadAllServices();
+      if (id_doctor) {
+        await loadDoctor(id_doctor);
+      }
+    }
+    init();
   }, [id_doctor]);
 
   return (
