@@ -25,6 +25,8 @@ function DoctorsAdd() {
           icon: doctorData.icon,
         });
         setSpecialtyPrincipal(doctorData.id_service_specialty ?? "");
+        console.log("doctorData:", doctorData);
+        console.log("id_service_specialty:", doctorData.id_service_specialty);
       }
       const servResponse = await api.get(`/doctors/${id}/services`);
       if (servResponse.data) {
