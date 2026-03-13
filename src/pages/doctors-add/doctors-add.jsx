@@ -24,7 +24,7 @@ function DoctorsAdd() {
           name: doctorData.name,
           icon: doctorData.icon,
         });
-        setSpecialtyPrincipal(parseInt(doctorData.id_service_specialty) || "");
+        setSpecialtyPrincipal(String(doctorData.id_service_specialty) || "");
       }
       const servResponse = await api.get(`/doctors/${id}/services`);
       if (servResponse.data) {
@@ -75,7 +75,7 @@ function DoctorsAdd() {
     setSelectedServices((prev) =>
       prev.filter((s) => s.id_service !== id_service)
     );
-    if (specialtyPrincipal === id_service) {
+    if (String(specialtyPrincipal) === String(id_service)) {
       setSpecialtyPrincipal("");
     }
   }
@@ -101,7 +101,7 @@ function DoctorsAdd() {
 
       const json = {
         name: doctor.name,
-        specialty: specialtyPrincipal,
+        specialty: parseInt(specialtyPrincipal),
         icon: doctor.icon,
         services: selectedServices.map((s) => ({
           id_service: s.id_service,
@@ -122,12 +122,6 @@ function DoctorsAdd() {
   }
 
   useEffect(() => {
-    if (selectedServices.length > 0) {
-      setSpecialtyPrincipal((prev) => prev);
-    }
-  }, [selectedServices]);
-
-  useEffect(() => {
     async function init() {
       await loadAllServices();
       if (id_doctor) {
@@ -136,10 +130,6 @@ function DoctorsAdd() {
     }
     init();
   }, [id_doctor]);
-
-  console.log("selectedServices:", selectedServices);
-  console.log("specialtyPrincipal:", specialtyPrincipal);
-  console.log("tipo:", typeof specialtyPrincipal);
 
   return (
     <>
@@ -237,11 +227,11 @@ function DoctorsAdd() {
             <select
               className="form-select"
               value={specialtyPrincipal}
-              onChange={(e) => setSpecialtyPrincipal(parseInt(e.target.value))}
+              onChange={(e) => setSpecialtyPrincipal(e.target.value)}
             >
               <option value="">Selecione a especialidade</option>
               {selectedServices.map((s) => (
-                <option key={s.id_service} value={s.id_service}>
+                <option key={s.id_service} value={String(s.id_service)}>
                   {s.description}
                 </option>
               ))}
