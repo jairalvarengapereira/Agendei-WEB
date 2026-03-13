@@ -43,7 +43,8 @@ function DoctorsAdd() {
         );
       }
     } catch (error) {
-      alert("Erro ao carregar médico");
+      console.error("Erro completo:", error);
+      alert("Erro ao carregar médico: " + error.message);
     }
   }
 
