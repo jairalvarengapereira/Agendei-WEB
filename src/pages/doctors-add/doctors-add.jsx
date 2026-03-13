@@ -1,3 +1,4 @@
+import "./doctors-add.css";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Navbar from "../../components/navbar/navbar.jsx";
@@ -8,108 +9,153 @@ function DoctorsAdd() {
   const navigate = useNavigate();
 
   const [doctor, setDoctor] = useState({ name: "", icon: "M", specialty: "" });
-  const [services, setServices] = useState([]);
+  const [allServices, setAllServices] = useState([]);
+  const [selectedServices, setSelectedServices] = useState([]);
 
   async function loadDoctor(id) {
     try {
       const response = await api.get(`/doctors/${id}`);
       if (response.data) {
-
-        // Verifique se response.data é um array
-        const doctorData = Array.isArray(response.data) ? response.data[0] : response.data;
-
-        // Verifique se specialty existe no objeto e defina um valor padrão
-        setDoctor({
-          ...doctorData,
-          specialty: doctorData.specialty ?? "", // Usando coalescência nula
-        });
+        const doctorData = Array.isArray(response.data)
+          ? response.data[0]
+          : response.data;
+        setDoctor({ ...doctorData, specialty: doctorData.specialty ?? "" });
+      }
+      const servResponse = await api.get(`/doctors/${id}/services`);
+      if (servResponse.data) {
+        setSelectedServices(
+          servResponse.data.map((s) => ({
+            id_service: s.id_service,
+            description: s.description,
+            price: s.price,
+          }))
+        );
       }
     } catch (error) {
       alert("Erro ao carregar médico");
-      console.error("Erro:", error); // Logando erro para mais detalhes
     }
   }
 
-  async function loadServices() {
+  async function loadAllServices() {
     try {
       const response = await api.get(`/services`);
-      if (response.data) {
-        setServices(response.data);
-      }
+      if (response.data) setAllServices(response.data);
     } catch (error) {
       alert("Erro ao listar serviços");
     }
   }
 
+  function addService(id_service) {
+    if (!id_service) return;
+    const alreadyAdded = selectedServices.find(
+      (s) => s.id_service === parseInt(id_service)
+    );
+    if (alreadyAdded) return;
+    const service = allServices.find(
+      (s) => s.id_service === parseInt(id_service)
+    );
+    if (service) {
+      setSelectedServices((prev) => [
+        ...prev,
+        {
+          id_service: service.id_service,
+          description: service.description,
+          price: "",
+        },
+      ]);
+    }
+  }
+
+  function removeService(id_service) {
+    setSelectedServices((prev) =>
+      prev.filter((s) => s.id_service !== id_service)
+    );
+  }
+
+  function updatePrice(id_service, price) {
+    setSelectedServices((prev) =>
+      prev.map((s) =>
+        s.id_service === id_service ? { ...s, price: price } : s
+      )
+    );
+  }
+
   async function saveDoctor() {
-    const json = {
-      id_doctor: id_doctor,
-      name: doctor.name,
-      specialty: doctor.specialty, // Agora deve estar correto
-      icon: doctor.icon,
-    };
-  
     try {
+      if (!doctor.name.trim()) {
+        alert("O nome do médico é obrigatório.");
+        return;
+      }
+      if (!doctor.specialty) {
+        alert("Selecione a especialidade principal.");
+        return;
+      }
+
+      const json = {
+        name: doctor.name,
+        specialty: doctor.specialty,
+        icon: doctor.icon,
+        services: selectedServices.map((s) => ({
+          id_service: s.id_service,
+          price: parseFloat(s.price) || 0,
+        })),
+      };
+
       const response = id_doctor
         ? await api.put(`/doctors/${id_doctor}`, json)
         : await api.post("/doctors", json);
 
-      if (response.status === 200 || response.status === 201) { // Verificar se o status é de sucesso
-        console.log("Médico salvo com sucesso:", response.data);
+      if (response.status === 200 || response.status === 201) {
         navigate("/doctors");
       }
     } catch (error) {
-      console.error("❌ Erro ao salvar médico:", error);
+      alert("Erro ao salvar médico.");
     }
   }
-  
 
   useEffect(() => {
-    loadServices();
+    loadAllServices();
   }, []);
 
   useEffect(() => {
-    if (id_doctor) {
-      loadDoctor(id_doctor);
-    }
-  }, [id_doctor, services]);
+    if (id_doctor) loadDoctor(id_doctor);
+  }, [id_doctor]);
 
   return (
     <>
       <Navbar />
       <div className="container-fluid mt-page">
-        <div className="row col-lg-4 offset-lg-4">
+        <div className="row col-lg-6 offset-lg-3">
           <div className="col-12 mt-2">
             <h2>{id_doctor ? "Editar Médico" : "Novo Médico"}</h2>
           </div>
 
-          {/* Nome do Médico */}
+          {/* Nome */}
           <div className="col-12 mt-4">
-            <label htmlFor="doctor" className="form-label">Médico</label>
+            <label className="form-label">Médico</label>
             <input
               type="text"
-              name="doctor"
-              id="doctor"
               className="form-control"
               value={doctor.name}
-              onChange={(e) => setDoctor((prev) => ({ ...prev, name: e.target.value }))}
+              onChange={(e) =>
+                setDoctor((prev) => ({ ...prev, name: e.target.value }))
+              }
               placeholder="Digite o nome do médico"
             />
           </div>
 
-          {/* Serviços */}
+          {/* Especialidade principal */}
           <div className="col-12 mt-3">
-            <label htmlFor="service" className="form-label">Serviço</label>
+            <label className="form-label">Especialidade Principal</label>
             <select
-              name="service"
-              id="service"
               className="form-select"
-              value={doctor.specialty} // Usa diretamente doctor.specialty
-              onChange={(e) => setDoctor((prev) => ({ ...prev, specialty: e.target.value }))
+              value={doctor.specialty}
+              onChange={(e) =>
+                setDoctor((prev) => ({ ...prev, specialty: e.target.value }))
               }
             >
-              <option value="">Selecione o serviço</option>
-              {services.map((s) => (
+              <option value="">Selecione a especialidade</option>
+              {allServices.map((s) => (
                 <option key={s.id_service} value={s.description}>
                   {s.description}
                 </option>
@@ -119,18 +165,85 @@ function DoctorsAdd() {
 
           {/* Gênero */}
           <div className="col-12 mt-3">
-            <label htmlFor="icon" className="form-label">Gênero</label>
+            <label className="form-label">Gênero</label>
             <select
-              name="icon"
-              id="icon"
               className="form-select"
               value={doctor.icon}
-              onChange={(e) => setDoctor((prev) => ({ ...prev, icon: e.target.value }))}
+              onChange={(e) =>
+                setDoctor((prev) => ({ ...prev, icon: e.target.value }))
+              }
             >
               <option value="M">Masculino</option>
               <option value="F">Feminino</option>
             </select>
           </div>
+
+          {/* Adicionar serviços */}
+          <div className="col-12 mt-4">
+            <label className="form-label">Adicionar Serviços</label>
+            <select
+              className="form-select"
+              onChange={(e) => addService(e.target.value)}
+              value=""
+            >
+              <option value="">Selecione um serviço para adicionar</option>
+              {allServices
+                .filter(
+                  (s) =>
+                    !selectedServices.find(
+                      (sel) => sel.id_service === s.id_service
+                    )
+                )
+                .map((s) => (
+                  <option key={s.id_service} value={s.id_service}>
+                    {s.description}
+                  </option>
+                ))}
+            </select>
+          </div>
+
+          {/* Lista de serviços selecionados */}
+          {selectedServices.length > 0 && (
+            <div className="col-12 mt-3">
+              <table className="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Serviço</th>
+                    <th>Preço (R$)</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {selectedServices.map((s) => (
+                    <tr key={s.id_service}>
+                      <td>{s.description}</td>
+                      <td>
+                        <input
+                          type="number"
+                          className="form-control"
+                          value={s.price}
+                          onChange={(e) =>
+                            updatePrice(s.id_service, e.target.value)
+                          }
+                          placeholder="0.00"
+                          min="0"
+                          step="0.01"
+                        />
+                      </td>
+                      <td>
+                        <button
+                          onClick={() => removeService(s.id_service)}
+                          className="btn btn-danger btn-sm"
+                        >
+                          <i className="bi bi-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
 
           {/* Botões */}
           <div className="col-12 mt-4">
