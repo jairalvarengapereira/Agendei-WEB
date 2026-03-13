@@ -14,39 +14,36 @@ function DoctorsAdd() {
   const [selectedServices, setSelectedServices] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  async function loadDoctor(id) {
-    try {
-      const response = await api.get(`/doctors/${id}`);
-      console.log(
-        "specialtyPrincipal setado:",
-        String(doctorData.id_service_specialty)
-      );
-      console.log("selectedServices carregados:", servResponse.data);
-      if (response.data) {
-        const doctorData = Array.isArray(response.data)
-          ? response.data[0]
-          : response.data;
-        setDoctor({
-          name: doctorData.name,
-          icon: doctorData.icon,
-        });
-        setSpecialtyPrincipal(String(doctorData.id_service_specialty) || "");
-      }
-      const servResponse = await api.get(`/doctors/${id}/services`);
-      if (servResponse.data) {
-        setSelectedServices(
-          servResponse.data.map((s) => ({
-            id_service: s.id_service,
-            description: s.description,
-            price: s.price,
-          }))
-        );
-      }
-    } catch (error) {
-      console.error("Erro completo:", error);
-      alert("Erro ao carregar médico: " + error.message);
+async function loadDoctor(id) {
+  try {
+    const response = await api.get(`/doctors/${id}`);
+    if (response.data && response.data.length > 0) {
+      const doctorData = response.data[0];
+      setDoctor({
+        name: doctorData.name,
+        icon: doctorData.icon,
+      });
+      setSpecialtyPrincipal(String(doctorData.id_service_specialty) || "");
     }
+
+    const servResponse = await api.get(`/doctors/${id}/services`);
+    if (servResponse.data) {
+      setSelectedServices(
+        servResponse.data.map((s) => ({
+          id_service: s.id_service,
+          description: s.description,
+          price: s.price,
+        }))
+      );
+    }
+  } catch (error) {
+    console.error("Erro:", error.response?.data || error.message);
+    alert(
+      "Erro ao carregar médico: " +
+        (error.response?.data?.error || error.message)
+    );
   }
+}
 
   async function loadAllServices() {
     try {
