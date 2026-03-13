@@ -12,6 +12,7 @@ function DoctorsAdd() {
   const [specialtyPrincipal, setSpecialtyPrincipal] = useState("");
   const [allServices, setAllServices] = useState([]);
   const [selectedServices, setSelectedServices] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   async function loadDoctor(id) {
     try {
@@ -127,9 +128,18 @@ function DoctorsAdd() {
       if (id_doctor) {
         await loadDoctor(id_doctor);
       }
+      setLoading(false);
     }
     init();
   }, [id_doctor]);
+
+  if (loading)
+    return (
+      <div className="container-fluid mt-page">
+        <Navbar />
+        <p className="mt-5 ms-3">Carregando...</p>
+      </div>
+    );
 
   return (
     <>
