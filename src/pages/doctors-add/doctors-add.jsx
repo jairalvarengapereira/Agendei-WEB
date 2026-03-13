@@ -122,6 +122,12 @@ function DoctorsAdd() {
   }
 
   useEffect(() => {
+    if (selectedServices.length > 0) {
+      setSpecialtyPrincipal((prev) => prev);
+    }
+  }, [selectedServices]);
+
+  useEffect(() => {
     async function init() {
       await loadAllServices();
       if (id_doctor) {
