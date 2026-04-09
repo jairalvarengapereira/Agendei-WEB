@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./login.css";
-import logo from "../../assets/images/Logotipo.png";
+import logo from "../../assets/images/Logo.png";
 import fundo from "../../assets/images/Fundo.jpg";
 import api from "../../constantes/api.js";
 
@@ -45,7 +45,10 @@ function Login() {
         {/* Coluna do Formulário */}
         <div className="col-sm-5 d-flex justify-content-center align-items-center text-center">
           <form className="frm-signin">
-            <img src={logo} className="logo mb-4" alt="Logotipo" />
+            <div className="d-flex align-items-center justify-content-center mb-4">
+              <img src={logo} className="logo me-2" alt="Logo" />
+              <span className="logo-text">Agendei</span>
+            </div>
             <h5 className="mb-5">
               Gerencie seus agendamentos de forma descomplicada.
             </h5>
