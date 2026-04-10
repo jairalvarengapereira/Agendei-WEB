@@ -1,200 +1,195 @@
-Estrutura de pastas e arquivos do projeto Agendei – WEB
+# Agendei - Sistema de Agendamento de Consultas Médicas
 
-AgendeiJS-WEB/  
-├── public/  
-│   ├── favicon.ico  
-│   ├── index.html  
-│   ├── logo.png  
-│   └── manifest.json  
-├── src/  
-│   ├── assets/  
-│   │   ├── images/  
-│   │   │   ├── logo.png  
-│   │   │   ├── banner.jpg  
-│   │   │   └── avatar.png  
-│   │   ├── styles/  
-│   │   │   ├── global.css  
-│   │   │   ├── buttons.css  
-│   │   │   └── forms.css  
-│   │   └── icons/  
-│   │       ├── calendar.svg  
-│   │       ├── user.svg  
-│   │       └── doctor.svg  
-│   ├── components/  
-│   │   ├── Button.jsx  
-│   │   ├── InputField.jsx  
-│   │   ├── Modal.jsx  
-│   │   ├── Navbar.jsx  
-│   │   ├── Sidebar.jsx  
-│   │   └── Table.jsx  
-│   ├── pages/  
-│   │   ├── appointment-add/  
-│   │   │   ├── AppointmentAdd.jsx  
-│   │   │   └── styles.css  
-│   │   ├── appointments/  
-│   │   │   ├── AppointmentsList.jsx  
-│   │   │   ├── AppointmentDetails.jsx  
-│   │   │   └── styles.css  
-│   │   ├── doctors-add/  
-│   │   │   ├── DoctorAdd.jsx  
-│   │   │   └── styles.css  
-│   │   ├── doctors/  
-│   │   │   ├── DoctorsList.jsx  
-│   │   │   ├── DoctorProfile.jsx  
-│   │   │   └── styles.css  
-│   │   ├── login/  
-│   │   │   ├── Login.jsx  
-│   │   │   ├── LoginForm.jsx  
-│   │   │   └── styles.css  
-│   │   ├── register/  
-│   │   │   ├── Register.jsx  
-│   │   │   ├── RegisterForm.jsx  
-│   │   │   └── styles.css  
-│   │   ├── users-add/  
-│   │   │   ├── UserAdd.jsx  
-│   │   │   └── styles.css  
-│   │   ├── users/  
-│   │   │   ├── UsersList.jsx  
-│   │   │   ├── UserProfile.jsx  
-│   │   │   └── styles.css  
-│   ├── services/  
-│   │   ├── api.js  
-│   │   ├── authService.js  
-│   │   ├── appointmentService.js  
-│   │   ├── doctorService.js  
-│   │   └── userService.js  
-│   ├── utils/  
-│   │   ├── helpers.js  
-│   │   ├── validators.js  
-│   │   └── constants.js  
-│   ├── App.jsx  
-│   ├── main.jsx  
-│   └── routes.jsx  
-├── .gitignore  
-├── package.json  
-├── package-lock.json  
-├── README.md  
-├── vite.config.js  
-└── jsconfig.json  
+Sistema completo para gerenciamento de agendamentos de consultas médicas, com interface web e API REST.
 
-📌 Estrutura e Conexões entre os Arquivos
-A API é responsável pelo backend do sistema AgendeiJS, gerenciando autenticação, usuários, médicos e agendamentos. Ela segue um padrão MVC (Model-View-Controller) e usa Express.js para criação de rotas.
-________________________________________
-🔹 Arquivos Principais e Suas Funções
-1️⃣ Configuração (config/)
-Essa pasta gerencia as configurações gerais do sistema.
-•   db.js
-  - Realiza a conexão com o banco de dados (provavelmente MongoDB ou PostgreSQL).
-  - Exporta essa conexão para ser usada nos modelos (models/).
-•   default.json
-  - Contém variáveis de ambiente, como:
-    - URL do banco de dados.
-    - Segredo para autenticação JWT.
-    - Porta do servidor.
-📌 Conexões:
-•   db.js é chamado no app.js para conectar a API ao banco de dados.
-________________________________________
-2️⃣ Modelos (models/)
-Define as estruturas dos dados no banco.
-•   User.js → Define os usuários (pacientes ou administradores).
-•   Doctor.js → Define os médicos registrados.
-•   Appointment.js → Representa os agendamentos.
-📌 Conexões:
-•   São utilizados pelos controladores em controllers/ para buscar, criar ou alterar dados.
-•   Interagem com db.js para acessar o banco de dados.
-________________________________________
-3️⃣ Controladores (controllers/)
-Implementam a lógica de cada funcionalidade do sistema.
-•   authController.js
-  - Realiza login e registra usuários.
-  - Gera e valida tokens JWT para autenticação.
-  - Chamado em authRoutes.js.
-•   userController.js
-  - Gerencia usuários: criação, atualização e listagem.
-  - Chamado em userRoutes.js.
-•   doctorController.js
-  - Gerencia médicos cadastrados.
-  - Chamado em doctorRoutes.js.
-•   appointmentController.js
-  - Gerencia os agendamentos: criação, atualização e exclusão.
-  - Chamado em appointmentRoutes.js.
-📌 Conexões:
-•   Chamam os modelos (models/) para interagir com o banco.
-•   São chamados pelas rotas (routes/) para processar requisições.
-________________________________________
-4️⃣ Rotas (routes/)
-Gerenciam os endpoints da API.
-•   authRoutes.js → Login, logout e registro de usuários.
-•   userRoutes.js → Gerencia usuários do sistema.
-•   doctorRoutes.js → Gerencia médicos.
-•   appointmentRoutes.js → Gerencia agendamentos.
-📌 Conexões:
-•   Chamam os controladores (controllers/) para processar requisições.
-•   São incluídos no app.js para serem usados na API.
-________________________________________
-5️⃣ Middleware (middleware/)
-São funções que interceptam requisições para adicionar segurança e tratamento de erros.
-•   authMiddleware.js
-  - Protege rotas privadas verificando tokens JWT.
-  - Chamado em rotas protegidas (ex: agendamentos).
-•   errorHandler.js
-  - Captura erros e os padroniza em respostas JSON.
-📌 Conexões:
-•   authMiddleware.js é usado nas rotas para restringir acesso.
-•   errorHandler.js é incluído em app.js para capturar erros da API.
-________________________________________
-6️⃣ Utilitários (utils/)
-Contém funções auxiliares usadas em diferentes partes da API.
-•   emailService.js → Envia emails (exemplo: confirmação de agendamento).
-•   logger.js → Registra logs do sistema.
-📌 Conexões:
-•   emailService.js pode ser usado em appointmentController.js.
-•   logger.js pode ser usado em errorHandler.js para registrar erros.
-________________________________________
-7️⃣ Arquivos de Inicialização
-•   app.js
-  - Arquivo principal que inicia o servidor.
-  - Configura Express.js e carrega as rotas.
-•   .env
-  - Armazena variáveis de ambiente sensíveis (ex: senha do banco).
-•   package.json
-  - Lista as dependências do projeto.
-📌 Conexões:
-•   app.js chama db.js, routes/, middleware/ e inicia o servidor.
-________________________________________
-🔗 Fluxo Geral da API
-1.  O usuário faz login em /api/auth/login.
-2.  O token JWT é gerado e usado para acessar rotas protegidas.
-3.  O usuário pode:
-  - Criar um agendamento (/api/appointments).
-  - Ver médicos cadastrados (/api/doctors).
-  - Gerenciar usuários (/api/users).
-4.  A API se comunica com o banco de dados através dos modelos.
-5.  As requisições passam por middlewares para autenticação e tratamento de erros.
+## 📋 Descrição
 
+O **Agendei** é uma aplicação web que permite o gerenciamento de consultas médicas, médicos, serviços e pacientes. Ideal para clínicas e consultórios que precisam organizar sua agenda de atendimentos.
 
-Telas:
-![image](https://github.com/user-attachments/assets/3bf4dc6a-eb41-462a-93ff-0d30467540f8)
-![image](https://github.com/user-attachments/assets/7e053205-6ff9-44ec-9b59-8c5400d70938)
-![image](https://github.com/user-attachments/assets/1f966fa2-a6ad-4d83-a2ce-6b00a1803514)
-![image](https://github.com/user-attachments/assets/21ee47a9-2b8c-4dd6-a9eb-db35c34c2f60)
-![image](https://github.com/user-attachments/assets/6e0377c5-b182-4c8a-b0f0-c1cc96d98558)
-![image](https://github.com/user-attachments/assets/ce9838b9-c194-475b-a679-297322febae7)
-![image](https://github.com/user-attachments/assets/85af59df-3072-40da-bfb5-337dbac3490f)
-![image](https://github.com/user-attachments/assets/2d93f4eb-2316-499b-a715-7e6bb2080635)
-![image](https://github.com/user-attachments/assets/084833c0-19ac-4e5f-94eb-e67e652e98c8)
-![image](https://github.com/user-attachments/assets/bfba9cc5-72be-453f-a958-f660fa3c5f50)
+## 🏗️ Arquitetura
 
+```
+├── agendei-web/          # Frontend (React + Vite)
+│   └── Interface de usuário
+│
+└── agendei-API/          # Backend (Express.js + PostgreSQL)
+    └── API RESTful
+```
 
+## 🚀 Tecnologias
 
+### Frontend
+- **React** - Biblioteca JavaScript para interface
+- **Vite** - Build tool moderno
+- **Axios** - Cliente HTTP
+- **React Router** - Gerenciamento de rotas
+- **React Confirm Alert** - Confirmações de ações
+- **Netlify** - Hospedagem
 
+### Backend
+- **Node.js** - Runtime JavaScript
+- **Express.js** - Framework web
+- **PostgreSQL** - Banco de dados relacional
+- **JWT** - Autenticação por tokens
+- **Render** - Hospedagem da API
+- **Neon** - Banco de dados PostgreSQL na nuvem
 
+## 📦 Instalação
 
+### Pré-requisitos
+- Node.js 18+
+- npm ou yarn
 
+### Backend (agendei-API)
+```bash
+cd agendei-API
+npm install
+npm start
+```
 
+### Frontend (agendei-web)
+```bash
+cd agendei-web
+npm install
+npm run dev
+```
 
+## 🔧 Variáveis de Ambiente
 
+### Backend (.env)
+```env
+DATABASE_URL=postgresql://user:password@host/neondb?sslmode=require
+PORT=3001
+```
 
+## 📡 Endpoints da API
 
+### Autenticação
+- `POST /admin/login` - Login de administrador
+- `POST /admin/register` - Registro de administrador
+- `POST /users/login` - Login de usuário
+- `POST /users` - Registro de usuário
 
+### Médicos
+- `GET /doctors` - Listar médicos (requer token)
+- `GET /doctors/:id` - Detalhes do médico
+- `POST /doctors` - Cadastrar médico
+- `PUT /doctors/:id` - Atualizar médico
+- `DELETE /doctors/:id` - Excluir médico
 
+### Serviços/Especialidades
+- `GET /services` - Listar serviços (público)
+- `POST /services` - Cadastrar serviço (requer token)
+- `PUT /services/:id` - Atualizar serviço
+- `DELETE /services/:id` - Excluir serviço
+
+### Agendamentos
+- `GET /appointments` - Listar agendamentos do usuário
+- `POST /appointments` - Criar agendamento
+- `DELETE /appointments/:id` - Cancelar agendamento
+
+### Admin
+- `GET /admin/appointments` - Todos os agendamentos
+- `GET /admin/users` - Listar usuários
+- `POST /admin/appointments` - Criar agendamento (admin)
+
+## 🗄️ Estrutura do Banco de Dados
+
+### Tabelas
+
+#### admins
+| Coluna | Tipo | Descrição |
+|--------|------|-----------|
+| id_admin | SERIAL | ID único |
+| name | VARCHAR(50) | Nome |
+| email | VARCHAR(100) | Email |
+| password | VARCHAR(100) | Senha criptografada |
+
+#### doctors
+| Coluna | Tipo | Descrição |
+|--------|------|-----------|
+| id_doctor | SERIAL | ID único |
+| name | VARCHAR(50) | Nome do médico |
+| specialty | VARCHAR(50) | Especialidade |
+| icon | VARCHAR(10) | Ícone (M/F) |
+
+#### services
+| Coluna | Tipo | Descrição |
+|--------|------|-----------|
+| id_service | SERIAL | ID único |
+| description | VARCHAR(50) | Descrição do serviço |
+
+#### users
+| Coluna | Tipo | Descrição |
+|--------|------|-----------|
+| id_user | SERIAL | ID único |
+| name | VARCHAR(50) | Nome |
+| email | VARCHAR(100) | Email |
+| password | VARCHAR(100) | Senha |
+| fone | VARCHAR(20) | Telefone |
+| cep, logr, num, compl, bairro, cidade, uf | VARCHAR/TEXT | Endereço |
+
+#### doctors_services
+| Coluna | Tipo | Descrição |
+|--------|------|-----------|
+| id_doctor_service | SERIAL | ID único |
+| id_doctor | INTEGER | FK médicos |
+| id_service | INTEGER | FK serviços |
+| price | NUMERIC(9,2) | Preço |
+
+#### appointments
+| Coluna | Tipo | Descrição |
+|--------|------|-----------|
+| id_appointment | SERIAL | ID único |
+| id_doctor | INTEGER | FK médico |
+| id_service | INTEGER | FK serviço |
+| id_user | INTEGER | FK usuário |
+| booking_date | DATE | Data |
+| booking_hour | VARCHAR(5) | Hora |
+
+## 🌐 Links de Produção
+
+- **Frontend**: https://agendeiweb.netlify.app
+- **API**: https://agendei-api-53h2.onrender.com
+
+## 📱 Funcionalidades
+
+1. **Login/Registro** - Autenticação de usuários e administradores
+2. **Gerenciamento de Médicos** - CRUD de médicos e especialidades
+3. **Gerenciamento de Serviços** - Cadastro de serviços médicos
+4. **Agendamento** - Criar, listar e cancelar consultas
+5. **Perfil** - Edição de dados do usuário
+6. **Dashboard Admin** - Visão geral de todos os agendamentos
+
+## 📝 Scripts Disponíveis
+
+### Backend
+```bash
+npm start          # Iniciar servidor
+npm run dev        # Desenvolvimento (se disponível)
+```
+
+### Frontend
+```bash
+npm run dev        # Servidor de desenvolvimento
+npm run build      # Build de produção
+npm run preview    # Preview do build
+npm run lint       # Verificar código
+```
+
+## 📄 Licença
+
+Este projeto está sob licença MIT.
+
+## 👤 Autor
+
+Jair Alvarenga Pereira
+
+## 🔄 Repositórios
+
+- **Frontend**: https://github.com/jairalvarengapereira/Agendei-WEB
+- **Backend**: https://github.com/jairalvarengapereira/Agendei-API
+
+---
+
+Made with ❤️ for healthcare management
