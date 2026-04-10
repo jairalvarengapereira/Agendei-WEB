@@ -1,6 +1,6 @@
 import "./register.css";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../../assets/images/Logotipo.png"
+import logo from "../../assets/images/Logo.png"
 import fundo from "../../assets/images/Fundo.jpg";
 import { useState } from "react";
 import api from "../../constantes/api.js";
