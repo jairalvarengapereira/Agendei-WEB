@@ -152,7 +152,7 @@ function Appointments(){
           </select>
         </div>
 
-        <button onClick={LoadAppointments} className="btn btn-primary ms-3" type="submit">
+        <button onClick={LoadAppointments} className="btn btn-primary ms-3" type="submit" style={{ padding: '8px 16px' }}>
           Filtrar
         </button>
       </div>
