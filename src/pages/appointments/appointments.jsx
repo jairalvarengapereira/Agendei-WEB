@@ -126,7 +126,7 @@ function Appointments(){
           className="form-control" 
           onChange={(e) => setDtStart(e.target.value)}
         />
-        <span className="ms-2 me-2 mt-2">Até</span>
+        <span className="ms-2 me-2" style={{ color: 'rgba(255,255,255,0.6)', display: 'flex', alignItems: 'center' }}>até</span>
         <input 
           id="endtDate" 
           type="date" 
