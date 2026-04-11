@@ -118,41 +118,37 @@ function Appointments(){
         </Link>
       </div>
 
-      <div className="d-flex justify-content-end">
+      <div className="filter-row">
 
         <input 
           id="startDate" 
           type="date" 
-          className="form-control" 
           onChange={(e) => setDtStart(e.target.value)}
         />
-        <span className="ms-2 me-2" style={{ color: 'rgba(255,255,255,0.6)', display: 'flex', alignItems: 'center' }}>até</span>
+        <span className="date-separator">até</span>
         <input 
           id="endtDate" 
           type="date" 
-          className="form-control" 
           onChange={(e) => setDtEnd(e.target.value)} 
         />
 
-        <div className="form-control ms-3">
-          <select 
-            name="doctor" 
-            id="doctor" 
-            value={idDoctor}
-            onChange={changeDoctor}          
-          >
-            <option value="">Todos os médicos</option>
-            {
-              doctors.map((doc) => (
-                <option key={doc.id_doctor} value={doc.id_doctor}>
-                  {doc.name}
-                </option>
-              ))
-            }
-          </select>
-        </div>
+        <select 
+          name="doctor" 
+          id="doctor" 
+          value={idDoctor}
+          onChange={changeDoctor}          
+        >
+          <option value="">Todos os médicos</option>
+          {
+            doctors.map((doc) => (
+              <option key={doc.id_doctor} value={doc.id_doctor}>
+                {doc.name}
+              </option>
+            ))
+          }
+        </select>
 
-        <button onClick={LoadAppointments} className="btn btn-primary ms-3" type="submit" style={{ padding: '8px 16px' }}>
+        <button onClick={LoadAppointments} className="filter-btn" type="submit">
           Filtrar
         </button>
       </div>
