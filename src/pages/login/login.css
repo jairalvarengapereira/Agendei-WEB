@@ -13,25 +13,78 @@
 .logo-text {
   font-size: 2rem;
   font-weight: bold;
-  color: #0d6efd;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #0D6EFD;
+  font-family: 'Nunito', sans-serif;
 }
 
 .background-login {
   width: 100%;
-  height: auto; /* deixa a altura proporcional */
-  object-fit: cover;
-  object-position: left;
-  display: block;
-  aspect-ratio: 16 / 9; 
+  height: 100vh;
+  background: linear-gradient(135deg, #0D1B3E 0%, #132B54 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-card {
+  background-color: #132B54;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 32px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-title {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.login-subtitle {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+  margin-top: 8px;
+  text-align: center;
+}
+
+.login-link {
+  color: #0D6EFD;
+  text-decoration: none;
+}
+
+.login-link:hover {
+  color: #3B8BFD;
+}
+
+.btn-login {
+  background-color: #0D6EFD;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 600;
+  width: 100%;
+  cursor: pointer;
+}
+
+.btn-login:hover {
+  background-color: #3B8BFD;
+}
+
+.copyright-login {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.75rem;
+  text-align: center;
+  margin-top: 24px;
 }
 
 /* No mobile */
 @media (max-width: 575.98px) {
-  .background-login {
-    width: 100%;
-    height: auto; /* garante que a imagem diminua */
-    aspect-ratio: auto; /* desativa proporção fixa */
-    max-height: 300px; /* limite de altura */
+  .login-card {
+    margin: 16px;
+    padding: 24px;
   }
 }

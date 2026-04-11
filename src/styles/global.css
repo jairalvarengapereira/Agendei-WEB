@@ -1,10 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 
+:root {
+  --bg-primary: #0D1B3E;
+  --bg-surface: #132B54;
+  --bg-surface-alt: #1A3A6E;
+  --bg-surface-light: rgba(255, 255, 255, 0.08);
+  --primary: #0D6EFD;
+  --primary-dim: #3B8BFD;
+  --text-primary: #FFFFFF;
+  --text-secondary: rgba(255, 255, 255, 0.6);
+  --border: rgba(255, 255, 255, 0.1);
+  --white: #FFFFFF;
+}
 
 html, body{
   font-family: 'Nunito', sans-serif;
   overflow-x: hidden;
-  /* background-color: #f8f9fa; */
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 .mt-page{
@@ -12,23 +25,23 @@ html, body{
 }
 
 select{
-  border:0px;
-  background-color: #ffff;
-  color: black;
-  cursor:pointer;
-  /* width: 100%; */
+  border: 0px;
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  cursor: pointer;
   border-radius: 5px;
   width: 200px;
+  padding: 8px;
+  border: 1px solid var(--border);
 }
 
 .react-modal-overlay{
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -38,11 +51,12 @@ select{
 .react-modal-content{
   width: 100%;
   max-width: 600px;
-  background: #fff;
+  background: var(--bg-surface);
   padding: 1rem;
-  border-radius: 0.24rem;
+  border-radius: 12px;
   margin-left: 15px;
   margin-right: 15px;
+  border: 1px solid var(--border);
 }
 
 .react-modal-close{
@@ -51,4 +65,82 @@ select{
   top: -15px;
   background: transparent;
   transition: filter 0.2s;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--primary-dim);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+}
+
+.card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: var(--white);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dim);
+}
+
+.form-control {
+  background-color: var(--bg-surface-light);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  padding: 12px 16px;
+  border-radius: 12px;
+}
+
+.form-control::placeholder {
+  color: var(--text-secondary);
+}
+
+.form-control:focus {
+  border-color: var(--primary);
+  outline: none;
+}
+
+.table {
+  color: var(--text-primary);
+}
+
+.table thead th {
+  background-color: var(--bg-surface);
+  border-color: var(--border);
+  color: var(--text-secondary);
+}
+
+.table td {
+  border-color: var(--border);
+}
+
+.navbar {
+  background-color: var(--bg-surface) !important;
+  border-bottom: 1px solid var(--border);
+}
+
+.navbar-brand, .nav-link {
+  color: var(--text-primary) !important;
+}
+
+.nav-link:hover {
+  color: var(--primary) !important;
 }

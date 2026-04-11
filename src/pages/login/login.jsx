@@ -2,7 +2,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./login.css";
 import logo from "../../assets/images/Logo.png";
-import fundo from "../../assets/images/Fundo.jpg";
 import api from "../../constantes/api.js";
 
 function Login() {
@@ -30,81 +29,70 @@ function Login() {
 
         navigate("/appointments");
       } else {
-        setMsg("Erro ao efetuar login. Tente mais tarde.");
+        setMsg("Erro ao effecting login. Tente mais tarde.");
       }
     } catch (error) {
       if (error.response?.data.error) setMsg(error.response.data.error);
-      else setMsg("Erro ao efetuar login. Tente mais tarde.");
+      else setMsg("Erro ao effecting login. Tente mais tarde.");
     }
   }
 
   return (
-    <div className="container-fluid">
-      {/* A classe g-0 remove espaços laterais indesejados */}
-      <div className="row g-0 min-vh-100">
-        {/* Coluna do Formulário */}
-        <div className="col-sm-5 d-flex justify-content-center align-items-center text-center">
-          <form className="frm-signin">
-            <div className="d-flex align-items-center justify-content-center mb-4">
-              <img src={logo} className="logo me-2" alt="Logo" />
-              <span className="logo-text">Agendei</span>
-            </div>
-            <h5 className="mb-5">
-              Gerencie seus agendamentos de forma descomplicada.
-            </h5>
-            <h5 className="mb-4 text-secondary">Acesse sua conta</h5>
+    <div className="background-login">
+      <div className="login-card">
+        <div className="d-flex align-items-center justify-content-center mb-4">
+          <img src={logo} className="logo" alt="Logo" />
+        </div>
+        
+        <h5 className="login-title">Bem-vindo de volta</h5>
+        <p className="login-subtitle">Gerencie seus agendamentos de forma descomplicada.</p>
 
-            <div className="mt-4">
-              <input
-                type="email"
-                placeholder="E-mail"
-                required
-                className="form-control"
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-
-            <div className="mt-2">
-              <input
-                type="password"
-                placeholder="Senha"
-                required
-                className="form-control"
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-
-            <div className="mt-3 mb-5">
-              <button
-                onClick={executeLogin}
-                type="button"
-                className="btn btn-primary w-100"
-              >
-                Login
-              </button>
-            </div>
-
-            {msg.length > 0 && (
-              <div className="alert alert-danger" role="alert">
-                {msg}
-              </div>
-            )}
-
-            <div>
-              <span className="me-1">Não tenho uma conta. </span>
-              <Link to="/register"> Criar conta agora.</Link>
-            </div>
-          </form>
+        <div className="mt-4">
+          <input
+            type="email"
+            placeholder="E-mail"
+            required
+            className="form-control"
+            onChange={(e) => setEmail(e.target.value)}
+            style={{ backgroundColor: 'rgba(255,255,255,0.08)', borderColor: 'rgba(255,255,255,0.1)', color: '#fff' }}
+          />
         </div>
 
-        {/* Coluna da Imagem - Agora sem classes que escondem o elemento */}
-        <div className="col-sm-7">
-          <img
-            src={fundo}
-            className="background-login img-fluid"
-            alt="Fundo de login"
+        <div className="mt-3">
+          <input
+            type="password"
+            placeholder="Senha"
+            required
+            className="form-control"
+            onChange={(e) => setPassword(e.target.value)}
+            style={{ backgroundColor: 'rgba(255,255,255,0.08)', borderColor: 'rgba(255,255,255,0.1)', color: '#fff' }}
           />
-          {/* <img src={fundo} className="background-login" alt="Fundo de login" /> */}
+        </div>
+
+        <div className="mt-4 mb-4">
+          <button
+            onClick={executeLogin}
+            type="button"
+            className="btn-login"
+          >
+            Entrar
+          </button>
+        </div>
+
+        {msg.length > 0 && (
+          <div className="alert alert-danger" role="alert" style={{ backgroundColor: 'rgba(255,107,107,0.2)', border: '1px solid #FF6B6B', color: '#FF6B6B' }}>
+            {msg}
+          </div>
+        )}
+
+        <div style={{ textAlign: 'center' }}>
+          <span style={{ color: 'rgba(255,255,255,0.6)' }}>Não tenho uma conta. </span>
+          <Link to="/register" className="login-link"> Criar conta agora.</Link>
+        </div>
+
+        <div className="copyright-login">
+          <p>© 2026 Jair Alvarenga Pereira.</p>
+          <p>Todos os direitos reservados.</p>
         </div>
       </div>
     </div>
