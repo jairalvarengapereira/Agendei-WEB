@@ -5,13 +5,9 @@ import logo from "../../assets/images/Logo.png";
 function Navbar(){
 
   function Logout(){
-    localStorage.removeItem('sessionToken');
-    localStorage.removeItem('sessionId');
-    localStorage.removeItem('sessionEmail');
-    localStorage.removeItem('sessionName');
-    
+    localStorage.clear();
     api.defaults.headers.common['Authorization'] = "";
-    window.location.href = "/";
+    window.location.replace("/");
   }
 
   return (
