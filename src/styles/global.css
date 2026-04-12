@@ -1,16 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 
 :root {
-  --bg-primary: #0D1B3E;
-  --bg-surface: #132B54;
-  --bg-surface-alt: #1A3A6E;
-  --bg-surface-light: rgba(255, 255, 255, 0.08);
-  --primary: #0D6EFD;
-  --primary-dim: #3B8BFD;
-  --text-primary: #FFFFFF;
-  --text-secondary: rgba(255, 255, 255, 0.6);
-  --border: rgba(255, 255, 255, 0.1);
-  --white: #FFFFFF;
+  --bg-primary: var(--bs-body-bg, #ffffff);
+  --bg-surface: var(--bs-body-bg, #ffffff);
+  --bg-surface-alt: var(--bs-tertiary-bg, #f8f9fa);
+  --bg-surface-light: var(--bs-secondary-bg, #f8f9fa);
+  --primary: var(--bs-primary, #0d6efd);
+  --primary-dim: var(--bs-primary-hover, #0b5ed7);
+  --text-primary: var(--bs-body-color, #212529);
+  --text-secondary: var(--bs-secondary-color, #6c757d);
+  --border: var(--bs-border-color, #dee2e6);
+  --white: #ffffff;
 }
 
 html, body{
@@ -25,12 +25,10 @@ html, body{
 }
 
 select{
-  border: 0px;
   background-color: var(--bg-surface);
   color: var(--text-primary);
   cursor: pointer;
   border-radius: 5px;
-  width: 200px;
   padding: 8px;
   border: 1px solid var(--border);
 }
@@ -146,23 +144,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .table > tbody > tr {
-  background-color: #132B54 !important;
+  background-color: var(--bg-surface) !important;
   transition: background-color 0.2s;
 }
 
 .table > tbody > tr:hover {
-  background-color: #1A3A6E !important;
+  background-color: var(--bg-surface-alt) !important;
 }
 
 .table > tbody > tr > td {
-  background-color: #132B54 !important;
+  background-color: var(--bg-surface) !important;
   border-color: var(--border) !important;
   vertical-align: middle !important;
 }
 
 table.table {
-  --bs-table-bg: #132B54 !important;
-  background-color: #132B54 !important;
+  background-color: var(--bg-surface) !important;
 }
 
 table.table > thead > tr > th,
@@ -171,7 +168,7 @@ table.table > tfoot > tr > th,
 table.table > thead > tr > td,
 table.table > tbody > tr > td,
 table.table > tfoot > tr > td {
-  background-color: #132B54 !important;
+  background-color: var(--bg-surface) !important;
 }
 
 .table td {
@@ -223,7 +220,7 @@ table.table > tfoot > tr > td {
 
 .filter-row button.filter-btn,
 button.filter-btn {
-  background-color: #0D6EFD !important;
+  background-color: var(--primary) !important;
   color: #FFFFFF !important;
   border: none !important;
   padding: 8px 16px !important;
