@@ -39,7 +39,7 @@ function Appointments(){
 
   async function LoadDoctors(){
     try {
-      const response = await api.get('/doctors');
+      const response = await api.get('/admin/appointments/doctors');
       
       if(response.data){
         setDoctors(response.data);
