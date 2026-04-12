@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./login.css";
 import logo from "../../assets/images/Logo.png";
 import api from "../../constantes/api.js";
@@ -9,13 +9,6 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState("");
-
-  useEffect(() => {
-    const token = localStorage.getItem('sessionToken');
-    if (token) {
-      navigate("/appointments", { replace: true });
-    }
-  }, [navigate]);
 
   async function executeLogin() {
     setMsg("");
