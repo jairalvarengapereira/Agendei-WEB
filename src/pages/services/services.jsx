@@ -67,9 +67,9 @@ function Services() {
       <Navbar />
       
       <div className="d-flex justify-content-between align-items-center mb-4">
-        <div>
-          <h2 className="mb-2">Serviços</h2>
-          <Link to="/services/add" className="btn btn-primary">
+        <div className="d-flex flex-column">
+          <h2 className="mb-3">Serviços</h2>
+          <Link to="/services/add" className="btn btn-primary mt-2">
             <i className="bi bi-plus-lg me-2"></i>
             Novo Serviço
           </Link>
