@@ -64,9 +64,8 @@ function Login() {
           <input
             type="email"
             placeholder="E-mail"
-            onClick={() => console.log("Email clicked")}
             onChange={(e) => setEmail(e.target.value)}
-            style={{ width: '100%', padding: '12px', borderRadius: '12px', border: '1px solid #e2e8f0', pointerEvents: 'auto' }}
+            style={{ width: '100%', padding: '12px', borderRadius: '12px', border: '1px solid #e2e8f0' }}
           />
         </div>
 
@@ -75,13 +74,12 @@ function Login() {
             type="password"
             placeholder="Senha"
             onChange={(e) => setPassword(e.target.value)}
-            style={{ width: '100%', padding: '12px', borderRadius: '12px', border: '1px solid #e2e8f0', pointerEvents: 'auto' }}
+            style={{ width: '100%', padding: '12px', borderRadius: '12px', border: '1px solid #e2e8f0' }}
           />
         </div>
 
         <button
           onClick={executeLogin}
-          onClickCapture={() => console.log("Button clicked")}
           style={{ 
             width: '100%', 
             marginTop: '16px',
@@ -91,8 +89,7 @@ function Login() {
             border: 'none',
             borderRadius: '9999px',
             fontWeight: '700',
-            cursor: 'pointer',
-            pointerEvents: 'auto'
+            cursor: 'pointer'
           }}
         >
           <i className="bi bi-arrow-right-circle me-2"></i>
