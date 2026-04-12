@@ -4,12 +4,6 @@ import logo from "../../assets/images/Logo.png";
 
 function Navbar(){
 
-  function Logout(){
-    localStorage.clear();
-    api.defaults.headers.common['Authorization'] = "";
-    window.location.replace("/");
-  }
-
   return (
     <nav
       className="navbar fixed-top navbar-expand-lg"
@@ -86,10 +80,18 @@ function Navbar(){
                   </li>
                   <li><hr className="dropdown-divider" /></li>
                   <li>
-                    <button className="dropdown-item d-flex align-items-center gap-2 text-danger" onClick={Logout}>
+                    <a 
+                      href="/" 
+                      className="dropdown-item d-flex align-items-center gap-2 text-danger"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        localStorage.clear();
+                        window.location.href = "/";
+                      }}
+                    >
                       <i className="bi bi-box-arrow-right"></i>
                       Desconectar
-                    </button>
+                    </a>
                   </li>
                 </ul>
               </div>
