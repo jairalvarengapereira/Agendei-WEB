@@ -86,7 +86,7 @@ function Navbar(){
                       onClick={(e) => {
                         e.preventDefault();
                         localStorage.clear();
-                        window.location.href = "/?t=" + new Date().getTime();
+                        window.location.reload();
                       }}
                     >
                       <i className="bi bi-box-arrow-right"></i>
