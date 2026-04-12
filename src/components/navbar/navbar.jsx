@@ -80,18 +80,18 @@ function Navbar(){
                   </li>
                   <li><hr className="dropdown-divider" /></li>
                   <li>
-                    <a 
-                      href="/" 
+                    <button 
+                      type="button"
                       className="dropdown-item d-flex align-items-center gap-2 text-danger"
-                      onClick={(e) => {
-                        e.preventDefault();
+                      style={{ background: 'none', border: 'none', width: '100%', cursor: 'pointer' }}
+                      onClick={() => {
                         localStorage.clear();
-                        window.location.reload();
+                        window.location.href = window.location.origin + '/';
                       }}
                     >
                       <i className="bi bi-box-arrow-right"></i>
                       Desconectar
-                    </a>
+                    </button>
                   </li>
                 </ul>
               </div>
