@@ -1,6 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import "./login.css";
 import logo from "../../assets/images/Logo.png";
 import api from "../../constantes/api.js";
 
@@ -38,57 +37,80 @@ function Login() {
   }
 
   return (
-    <div className="background-login">
-      <div className="login-card">
-        <div className="d-flex align-items-center justify-content-center mb-4">
-          <img src={logo} className="logo" alt="Logo" />
+    <div style={{ 
+      width: '100%', 
+      minHeight: '100vh', 
+      background: 'linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 50%, #fefce8 100%)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '20px'
+    }}>
+      <div style={{ 
+        background: 'white', 
+        padding: '40px', 
+        borderRadius: '24px',
+        maxWidth: '420px',
+        width: '100%'
+      }}>
+        <div style={{ textAlign: 'center', marginBottom: '16px' }}>
+          <img src={logo} style={{ width: '180px', borderRadius: '16px' }} alt="Logo" />
         </div>
         
-        <h5 className="login-title">Bem-vindo de volta</h5>
-        <p className="login-subtitle">Gerencie seus agendamentos de forma descomplicada.</p>
+        <h5 style={{ textAlign: 'center', color: '#1e293b', fontSize: '1.75rem', fontWeight: '800' }}>Bem-vindo de volta</h5>
+        <p style={{ textAlign: 'center', color: '#64748b' }}>Gerencie seus agendamentos de forma descomplicada.</p>
 
-        <div className="mt-4">
+        <div style={{ marginTop: '16px' }}>
           <input
             type="email"
             placeholder="E-mail"
-            className="form-control"
             onClick={() => console.log("Email clicked")}
             onChange={(e) => setEmail(e.target.value)}
+            style={{ width: '100%', padding: '12px', borderRadius: '12px', border: '1px solid #e2e8f0', pointerEvents: 'auto' }}
           />
         </div>
 
-        <div className="mt-3">
+        <div style={{ marginTop: '12px' }}>
           <input
             type="password"
             placeholder="Senha"
-            className="form-control"
             onChange={(e) => setPassword(e.target.value)}
+            style={{ width: '100%', padding: '12px', borderRadius: '12px', border: '1px solid #e2e8f0', pointerEvents: 'auto' }}
           />
         </div>
 
-        <div className="mt-4 mb-4">
-          <button
-            onClick={executeLogin}
-            type="button"
-            className="btn-login"
-          >
-            <i className="bi bi-arrow-right-circle me-2"></i>
-            Entrar
-          </button>
-        </div>
+        <button
+          onClick={executeLogin}
+          onClickCapture={() => console.log("Button clicked")}
+          style={{ 
+            width: '100%', 
+            marginTop: '16px',
+            padding: '14px', 
+            background: 'linear-gradient(135deg, #0891b2 0%, #0e7490 100%)',
+            color: 'white',
+            border: 'none',
+            borderRadius: '9999px',
+            fontWeight: '700',
+            cursor: 'pointer',
+            pointerEvents: 'auto'
+          }}
+        >
+          <i className="bi bi-arrow-right-circle me-2"></i>
+          Entrar
+        </button>
 
         {msg.length > 0 && (
-          <div className="alert alert-danger" role="alert">
+          <div style={{ padding: '12px', background: '#fee2e2', color: '#dc2626', borderRadius: '8px', marginTop: '16px' }}>
             {msg}
           </div>
         )}
 
-        <div style={{ textAlign: 'center' }}>
+        <div style={{ textAlign: 'center', marginTop: '16px' }}>
           <span style={{ color: '#64748b' }}>Não tenho uma conta. </span>
-          <Link to="/register" className="login-link"> Criar conta agora.</Link>
+          <Link to="/register" style={{ color: '#0891b2', fontWeight: '600' }}> Criar conta agora.</Link>
         </div>
 
-        <div className="copyright-login">
+        <div style={{ textAlign: 'center', marginTop: '32px', paddingTop: '24px', borderTop: '1px solid #e2e8f0', color: '#94a3b8', fontSize: '0.75rem' }}>
           <p>© 2026 Jair Alvarenga Pereira.</p>
           <p>Todos os direitos reservados.</p>
         </div>
