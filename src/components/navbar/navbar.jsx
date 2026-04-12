@@ -37,7 +37,7 @@ function Navbar(){
 
             <li className="nav-item">
               <Link className="nav-link" to="/doctors">
-                <i className="bi bi-doctor me-1"></i>
+                <i className="bi bi-person-badge me-1"></i>
                 Médicos
               </Link>
             </li>
