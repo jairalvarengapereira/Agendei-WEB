@@ -1,10 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import "./login.css";
 import logo from "../../assets/images/Logo.png";
 import api from "../../constantes/api.js";
 
 function Login() {
-  console.log("Login component rendering");
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -38,66 +38,58 @@ function Login() {
   }
 
   return (
-    <div style={{ 
-      width: '100%', 
-      minHeight: '100vh', 
-      background: 'linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 50%, #fefce8 100%)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center'
-    }}>
-      <div style={{ 
-        background: 'white', 
-        padding: '40px', 
-        borderRadius: '24px',
-        maxWidth: '420px',
-        width: '100%'
-      }}>
-        <div style={{ textAlign: 'center', marginBottom: '16px' }}>
-          <img src={logo} style={{ width: '180px', borderRadius: '16px' }} alt="Logo" />
+    <div className="background-login">
+      <div className="login-card">
+        <div className="d-flex align-items-center justify-content-center mb-4">
+          <img src={logo} className="logo" alt="Logo" />
         </div>
         
-        <h5 style={{ textAlign: 'center', color: '#1e293b', fontSize: '1.75rem', fontWeight: '800' }}>Bem-vindo de volta</h5>
-        <p style={{ textAlign: 'center', color: '#64748b' }}>Gerencie seus agendamentos de forma descomplicada.</p>
+        <h5 className="login-title">Bem-vindo de volta</h5>
+        <p className="login-subtitle">Gerencie seus agendamentos de forma descomplicada.</p>
 
-        <div style={{ marginTop: '16px' }}>
+        <div className="mt-4">
           <input
             type="email"
             placeholder="E-mail"
-            style={{ width: '100%', padding: '12px', borderRadius: '12px', border: '1px solid #e2e8f0' }}
+            className="form-control"
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
 
-        <div style={{ marginTop: '12px' }}>
+        <div className="mt-3">
           <input
             type="password"
             placeholder="Senha"
-            style={{ width: '100%', padding: '12px', borderRadius: '12px', border: '1px solid #e2e8f0' }}
+            className="form-control"
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
 
-        <button
-          onClick={executeLogin}
-          style={{ 
-            width: '100%', 
-            marginTop: '16px',
-            padding: '14px', 
-            background: 'linear-gradient(135deg, #0891b2 0%, #0e7490 100%)',
-            color: 'white',
-            border: 'none',
-            borderRadius: '9999px',
-            fontWeight: '700',
-            cursor: 'pointer'
-          }}
-        >
-          Entrar
-        </button>
+        <div className="mt-4 mb-4">
+          <button
+            onClick={executeLogin}
+            type="button"
+            className="btn-login"
+          >
+            <i className="bi bi-arrow-right-circle me-2"></i>
+            Entrar
+          </button>
+        </div>
 
-        <div style={{ textAlign: 'center', marginTop: '16px' }}>
+        {msg.length > 0 && (
+          <div className="alert alert-danger" role="alert">
+            {msg}
+          </div>
+        )}
+
+        <div style={{ textAlign: 'center' }}>
           <span style={{ color: '#64748b' }}>Não tenho uma conta. </span>
-          <Link to="/register" style={{ color: '#0891b2', fontWeight: '600' }}> Criar conta agora.</Link>
+          <Link to="/register" className="login-link"> Criar conta agora.</Link>
+        </div>
+
+        <div className="copyright-login">
+          <p>© 2026 Jair Alvarenga Pereira.</p>
+          <p>Todos os direitos reservados.</p>
         </div>
       </div>
     </div>
