@@ -256,8 +256,7 @@ function UsersAdd() {
 
                 {/* Botões */}
                 <div className="d-flex justify-content-end gap-3 mt-4">
-                  <Link to="/users" className="btn btn-outline-secondary">
-                    <i className="bi bi-x-lg me-2"></i>
+                  <Link to="/users" className="btn btn-outline-primary">
                     Cancelar
                   </Link>
                   <button
@@ -265,7 +264,6 @@ function UsersAdd() {
                     type="button"
                     className="btn btn-primary"
                   >
-                    <i className="bi bi-check-lg me-2"></i>
                     Salvar Dados
                   </button>
                 </div>

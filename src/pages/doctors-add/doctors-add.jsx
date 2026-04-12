@@ -268,14 +268,14 @@ async function loadDoctor(id) {
 
           {/* Botões */}
           <div className="col-12 mt-4">
-            <div className="d-flex justify-content-end">
-              <Link to="/doctors" className="btn btn-outline-primary me-3">
+            <div className="d-flex justify-content-end gap-3">
+              <Link to="/doctors" className="btn btn-outline-primary">
                 Cancelar
               </Link>
               <button
                 onClick={saveDoctor}
                 type="button"
-                className="btn btn-primary ms-2"
+                className="btn btn-primary"
               >
                 Salvar Dados
               </button>

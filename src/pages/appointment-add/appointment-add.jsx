@@ -257,11 +257,11 @@ function AppointmentAdd(){
         </div>
 
         <div className="col-12 mt-4">
-          <div className="d-flex justify-content-end">
-            <Link to="/appointments" className="btn btn-outline-primary me-3">
+          <div className="d-flex justify-content-end gap-3">
+            <Link to="/appointments" className="btn btn-outline-primary">
               Cancelar
             </Link>
-            <button onClick={SaveAppointment} type="button" className="btn btn-primary ms-2">
+            <button onClick={SaveAppointment} type="button" className="btn btn-primary">
               Salvar Dados
             </button>
 
