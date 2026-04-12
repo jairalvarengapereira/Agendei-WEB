@@ -1,19 +1,17 @@
 import "./navbar.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../../assets/images/Logo.png";
 
 function Navbar(){
 
-  const navigate = useNavigate()
-
   function Logout(){
-    navigate("/");
     localStorage.removeItem('sessionToken');
     localStorage.removeItem('sessionId');
     localStorage.removeItem('sessionEmail');
     localStorage.removeItem('sessionName');
     
-    api.defaults.headers.common['Autorization'] = "";
+    api.defaults.headers.common['Authorization'] = "";
+    window.location.href = "/";
   }
 
   return (

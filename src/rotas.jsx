@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/login/login.jsx";
 import Register from "./pages/register/register.jsx";
 import Appointments from "./pages/appointments/appointments.jsx";
@@ -14,7 +14,8 @@ import ServicesAdd from "./pages/services-add/services-add.jsx";
 function ProtectedRoute({ children }) {
   const token = localStorage.getItem('sessionToken');
   if (!token) {
-    return <Navigate to="/" replace />;
+    window.location.href = "/";
+    return null;
   }
   return children;
 }
