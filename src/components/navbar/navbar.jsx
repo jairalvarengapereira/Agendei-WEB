@@ -83,10 +83,9 @@ function Navbar(){
                     <button 
                       type="button"
                       className="dropdown-item d-flex align-items-center gap-2 text-danger"
-                      style={{ background: 'none', border: 'none', width: '100%', cursor: 'pointer' }}
                       onClick={() => {
                         localStorage.clear();
-                        window.location.href = window.location.origin + '/';
+                        window.location.assign('/');
                       }}
                     >
                       <i className="bi bi-box-arrow-right"></i>
