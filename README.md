@@ -3,6 +3,7 @@
 ![Badge](https://img.shields.io/badge/Platform-Web-brightgreen)
 ![Badge](https://img.shields.io/badge/Framework-React-blue)
 ![Badge](https://img.shields.io/badge/License-MIT-green)
+![Badge](https://img.shields.io/badge/Status-Active-success)
 
 ---
 
@@ -12,51 +13,129 @@
 
 ### Sistema de Agendamento de Consultas Médicas - Painel Admin
 
+**Deploy**: https://agendeiweb.netlify.app
+
 </div>
 
 ---
 
-## 📱Sobre o Sistema
+## 📱 Sobre o Sistema
 
-O **Agendei Web** é um painel administrativo para gerenciamento de agendamentos de consultas médicas. Desenvolvido com React, permite que administradores gerenciem médicos, serviços, pacientes e agendamentos de forma eficiente.
+O **Agendei Web** é um painel administrativo moderno para gerenciamento de agendamentos de consultas médicas. Desenvolvido com React e Vite, oferece uma interface intuitiva para que administradores gerenciem médicos, especialidades, pacientes e agendamentos de forma eficiente.
 
 ---
 
-## 🚀Funcionalidades
+## 🚀 Funcionalidades
 
-### ✨Principais
+### ✨ Principais
 - 🔐 **Autenticação** - Login seguro de administradores
-- 👨‍⚕️ **Gerenciamento de Médicos** - Cadastro, edição e exclusão
+- 👨‍⚕️ **Gerenciamento de Médicos** - Cadastro, edição e exclusão de médicos com suas especialidades
 - 🏥 **Serviços/Especialidades** - Cadastro de especialidades médicas
-- 👥 **Pacientes** - Gerenciamento de usuários cadastrados
-- 📅 **Agendamentos** - Visualização e gerenciamento de consultas
-- 📊 **Dashboard** - Visão geral das atividades
-
-### 📱Telas
-- **Login** - Acesso ao sistema
-- **Cadastro** - Registro de novos administradores
-- **Agendamentos** - Lista de todos os agendamentos
-- **Médicos** - CRUD de médicos
-- **Serviços** - CRUD de especialidades
-- **Pacientes** - Lista de pacientes
-- **Perfil** - Edição de perfil do admin
+- 👥 **Pacientes** - Gerenciamento completo de pacientes (CRUD)
+- 📅 **Agendamentos** - Criação e gerenciamento de consultas com filtros por período e médico
+- 👤 **Perfil** - Edição de dados do administrador
 
 ---
 
-## 🛠️Tecnologias
+## 🖥️ Telas do Sistema
+
+### 1. Login
+Tela de acesso ao sistema com design moderno:
+- Logo institucional
+- Campos para email e senha
+- Botão de acesso com gradiente
+- Link para criação de nova conta
+
+### 2. Registro
+Tela para cadastro de novos administradores:
+- Formulário completo com campos de nome, email e senha
+- Design integrado com a identidade visual
+
+### 3. Agendamentos
+Dashboard principal de consultas:
+- **Filtros**: Período de data (data inicial até data final), seleção de médico
+- **Tabela**: Lista de todos os agendamentos com colunas:
+  - Paciente
+  - Médico
+  - Especialidade
+  - Data/Hora
+  - Valor
+  - Ações (editar/excluir)
+- **Botão**: Novo Agendamento
+
+### 4. Médicos
+Gestão de profissionais:
+- **Filtro**: Seleção de médico para filtrar resultados
+- **Tabela**: Lista de médicos com:
+  - Nome
+  - Especialidade Principal
+  - Ações (editar/excluir)
+- **Botão**: Novo Médico
+
+### 5. Pacientes
+Gerenciamento de pacientes:
+- **Filtro**: Seleção de paciente
+- **Tabela**: Lista completa com colunas:
+  - Nome
+  - E-mail
+  - Telefone
+  - CEP
+  - Endereço
+  - Número
+  - Complemento
+  - Bairro
+  - Cidade
+  - UF
+  - Ações (editar/excluir)
+- **Botão**: Novo Paciente
+
+### 6. Serviços
+Cadastro de especialidades:
+- **Tabela**: Lista de serviços com:
+  - Descrição
+  - Ações (editar/excluir)
+- **Botão**: Novo Serviço
+
+### 7. Perfil
+Edição de dados do administrador:
+- Campos para alteração de nome, email e senha
+
+---
+
+## 🎨 Design
+
+O sistema conta com um design moderno e responsivo:
+
+- **Paleta de Cores**:
+  - Primária: Ciano (#0891b2)
+  - Secundária: Indigo (#6366f1)
+  - Fundos claros com gradientes sutis
+
+- **Componentes**:
+  - Cards com sombras suaves
+  - Botões com gradientes e efeitos hover
+  - Tabelas com linhas hover
+  - Ícones Bootstrap Icons
+
+- **Responsividade**: Layout adaptável para diferentes tamanhos de tela
+
+---
+
+## 🛠️ Tecnologias
 
 | Tecnologia | Descrição |
 |------------|-----------|
 | **React** | Biblioteca JavaScript para interface |
-| **Vite** | Build tool moderno |
-| **Axios** | Cliente HTTP |
+| **Vite** | Build tool moderno e rápido |
+| **Axios** | Cliente HTTP para API |
 | **React Router** | Gerenciamento de rotas |
-| **React Bootstrap** | Componentes UI |
-| **Netlify** | Hospedagem |
+| **Bootstrap** | Framework UI |
+| **Bootstrap Icons** | Biblioteca de ícones |
+| **Netlify** | Hospedagem e deploy |
 
 ---
 
-## 📁Estrutura do Projeto
+## 📁 Estrutura do Projeto
 
 ```
 agendei-web/
@@ -67,27 +146,31 @@ agendei-web/
 │   ├── components/        # Componentes reutilizáveis
 │   │   └── navbar/        # Barra de navegação
 │   ├── constantes/        # Configurações
-│   │   └── api.js         # API client
+│   │   └── api.js         # Cliente API
 │   ├── pages/             # Páginas do sistema
 │   │   ├── login/         # Login
 │   │   ├── register/       # Cadastro
 │   │   ├── appointments/   # Agendamentos
+│   │   ├── appointments-add/ # Novo/Editar agendamento
 │   │   ├── doctors/        # Médicos
+│   │   ├── doctors-add/    # Novo/Editar médico
 │   │   ├── services/       # Serviços
+│   │   ├── services-add/   # Novo/Editar serviço
 │   │   ├── users/          # Pacientes
+│   │   ├── users-add/      # Novo/Editar paciente
 │   │   └── profile/        # Perfil
 │   ├── styles/            # Estilos globais
 │   │   └── global.css     # CSS global
 │   ├── rotas.jsx          # Rotas do sistema
 │   └── main.jsx           # Entry point
 ├── index.html             # HTML principal
-├── package.json          # Dependências
-└── vite.config.js        # Configuração Vite
+├── package.json           # Dependências
+└── vite.config.js         # Configuração Vite
 ```
 
 ---
 
-## ⚙️Configuração
+## ⚙️ Configuração
 
 ### Pré-requisitos
 - Node.js 18+
@@ -105,7 +188,7 @@ cd Agendei-WEB
 # Instale as dependências
 npm install
 
-# Inicie o projeto
+# Inicie o projeto em modo desenvolvimento
 npm run dev
 ```
 
@@ -117,14 +200,14 @@ npm run build
 
 ---
 
-## 🔗APIs e Integrações
+## 🔗 APIs e Integrações
 
 - **API Principal**: https://agendei-api-53h2.onrender.com
 - **Frontend**: https://agendeiweb.netlify.app
 
 ---
 
-## 🗄️Estrutura do Banco de Dados
+## 🗄️ Estrutura do Banco de Dados
 
 ### Tabelas Principais
 
@@ -134,18 +217,18 @@ npm run build
 | `doctors` | Médicos cadastrados |
 | `services` | Especialidades médicas |
 | `users` | Pacientes |
-| `doctors_services` | Serviços por médico |
-| `appointments` | Agendamentos |
+| `doctors_services` | Relação médicos-serviços |
+| `appointments` | Agendamentos de consultas |
 
 ---
 
-## 📄Licença
+## 📄 Licença
 
 MIT License © 2026 Jair Alvarenga Pereira
 
 ---
 
-## 👨‍💻Autor
+## 👨‍💻 Autor
 
 **Jair Alvarenga Pereira**
 
@@ -153,7 +236,7 @@ MIT License © 2026 Jair Alvarenga Pereira
 
 ---
 
-## 🔄Projetos Relacionados
+## 🔄 Projetos Relacionados
 
 - 📱 **Agendei Mobile**: https://github.com/jairalvarengapereira/Agendei-MOBILE
 - 🔧 **Agendei API**: https://github.com/jairalvarengapereira/Agendei-API
