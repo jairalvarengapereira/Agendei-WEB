@@ -1,22 +1,31 @@
 function Service(props) {
   return (
     <tr>
-      <td>{props.description}</td>
+      <td>
+        <div className="d-flex align-items-center">
+          <div className="service-icon me-3">
+            <i className="bi bi-clipboard-pulse"></i>
+          </div>
+          <span className="fw-medium">{props.description}</span>
+        </div>
+      </td>
       <td className="text-end">
-        <div className="d-inline me-2">
+        <div className="btn-group" role="group">
           <button
             onClick={() => props.clickEdit(props.id_service)}
-            className="btn btn-primary btn-action"
+            className="btn btn-action btn-outline-primary"
+            title="Editar"
           >
-            <i className="bi bi-pencil-square"></i>
+            <i className="bi bi-pencil"></i>
+          </button>
+          <button
+            onClick={() => props.clickDelete(props.id_service)}
+            className="btn btn-action btn-outline-danger"
+            title="Excluir"
+          >
+            <i className="bi bi-trash3"></i>
           </button>
         </div>
-        <button
-          onClick={() => props.clickDelete(props.id_service)}
-          className="btn btn-danger btn-action"
-        >
-          <i className="bi bi-trash"></i>
-        </button>
       </td>
     </tr>
   );

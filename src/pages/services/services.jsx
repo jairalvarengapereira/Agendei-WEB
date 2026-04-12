@@ -65,19 +65,19 @@ function Services() {
   return (
     <div className="container-fluid mt-page">
       <Navbar />
-      <div className="d-flex justify-content-between align-items-center">
+      
+      <div className="d-flex justify-content-between align-items-center mb-4">
         <div>
-          <h2 className="d-inline">Serviços</h2>
-          <Link
-            to="/services/add"
-            className="btn btn-outline-primary ms-5 mb-2"
-          >
+          <h2 className="mb-2">Serviços</h2>
+          <Link to="/services/add" className="btn btn-primary">
+            <i className="bi bi-plus-lg me-2"></i>
             Novo Serviço
           </Link>
         </div>
       </div>
-      <div>
-        <table className="table table-hover">
+      
+      <div className="card p-0">
+        <table className="table table-hover mb-0">
           <thead className="bold">
             <tr>
               <th scope="col">Descrição</th>

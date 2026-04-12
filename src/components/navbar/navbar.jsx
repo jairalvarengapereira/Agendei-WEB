@@ -19,12 +19,11 @@ function Navbar(){
   return (
     <nav
       className="navbar fixed-top navbar-expand-lg"
-      style={{ backgroundColor: '#132B54', borderBottom: '1px solid rgba(255,255,255,0.1)' }}
-      data-bs-theme="dark"
     >
-      <div className="container-fluid">
-        <Link className="navbar-brand" to="/appointments">
-          <img className="navbar-logo" src={logo} alt="" />
+      <div className="container-fluid px-4">
+        <Link className="navbar-brand d-flex align-items-center gap-2" to="/appointments">
+          <img className="navbar-logo" src={logo} alt="" style={{ height: '40px', borderRadius: '12px', boxShadow: '0 2px 8px rgba(8, 145, 178, 0.3)' }} />
+          <span className="fw-bold">Agendei</span>
         </Link>
 
         <button
@@ -35,33 +34,36 @@ function Navbar(){
           aria-controls="navbarSupportedContent"
           aria-expanded="false"
           aria-label="Toggle navigation"
-          style={{ borderColor: 'rgba(255,255,255,0.3)' }}
         >
-          <span className="navbar-toggler-icon" style={{ backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 30 30%27%3e%3cpath stroke=%27rgba%28255,255,255,0.6%29%27 stroke-linecap=%27round%27 stroke-miterlimit=%2710%27 stroke-width=%272%27 d=%27M4 7h22M4 15h22M4 23h22%27/%3e%3c/svg%3e")' }}></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0 gap-2">
             <li className="nav-item">
-              <Link className="nav-link" to="/appointments" style={{ color: '#fff' }}>
+              <Link className="nav-link" to="/appointments">
+                <i className="bi bi-calendar-check me-1"></i>
                 Agendamentos
               </Link>
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link" to="/doctors" style={{ color: '#fff' }}>
+              <Link className="nav-link" to="/doctors">
+                <i className="bi bi-doctor me-1"></i>
                 Médicos
               </Link>
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link" to="/services" style={{ color: '#fff' }}>
+              <Link className="nav-link" to="/services">
+                <i className="bi bi-clipboard-pulse me-1"></i>
                 Serviços
               </Link>
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link" to="/users" style={{ color: '#fff' }}>
+              <Link className="nav-link" to="/users">
+                <i className="bi bi-people me-1"></i>
                 Pacientes
               </Link>
             </li>
@@ -72,26 +74,26 @@ function Navbar(){
             <li className="nav-item">
               <div className="btn-group">
                 <button
-                  className="btn dropdown-toggle"
+                  className="btn dropdown-toggle d-flex align-items-center gap-2"
                   type="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
-                  style={{ backgroundColor: '#0D6EFD', color: '#fff' }}
                 >
+                  <i className="bi bi-person-circle fs-5"></i>
                   {localStorage.getItem("sessionName")}
                 </button>
 
-                <ul className="dropdown-menu dropdown-menu-end" style={{ backgroundColor: '#132B54', border: '1px solid rgba(255,255,255,0.1)' }}>
+                <ul className="dropdown-menu dropdown-menu-end dropdown-menu-shadow">
                   <li>
-                    <Link className="dropdown-item" to="/profile" style={{ color: '#fff' }}>
+                    <Link className="dropdown-item d-flex align-items-center gap-2" to="/profile">
+                      <i className="bi bi-person-gear"></i>
                       Meu Perfil
                     </Link>
                   </li>
+                  <li><hr className="dropdown-divider" /></li>
                   <li>
-                    <hr className="dropdown-divider" style={{ borderColor: 'rgba(255,255,255,0.2)' }}></hr>
-                  </li>
-                  <li>
-                    <button className="dropdown-item" onClick={Logout} style={{ color: '#fff' }}>
+                    <button className="dropdown-item d-flex align-items-center gap-2 text-danger" onClick={Logout}>
+                      <i className="bi bi-box-arrow-right"></i>
                       Desconectar
                     </button>
                   </li>

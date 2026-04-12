@@ -29,11 +29,11 @@ function Login() {
 
         navigate("/appointments");
       } else {
-        setMsg("Erro ao effecting login. Tente mais tarde.");
+        setMsg("Erro ao fazer login. Tente mais tarde.");
       }
     } catch (error) {
       if (error.response?.data.error) setMsg(error.response.data.error);
-      else setMsg("Erro ao effecting login. Tente mais tarde.");
+      else setMsg("Erro ao fazer login. Tente mais tarde.");
     }
   }
 
@@ -54,7 +54,6 @@ function Login() {
             required
             className="form-control"
             onChange={(e) => setEmail(e.target.value)}
-            style={{ backgroundColor: 'rgba(255,255,255,0.08)', borderColor: 'rgba(255,255,255,0.1)', color: '#fff' }}
           />
         </div>
 
@@ -65,7 +64,6 @@ function Login() {
             required
             className="form-control"
             onChange={(e) => setPassword(e.target.value)}
-            style={{ backgroundColor: 'rgba(255,255,255,0.08)', borderColor: 'rgba(255,255,255,0.1)', color: '#fff' }}
           />
         </div>
 
@@ -75,18 +73,19 @@ function Login() {
             type="button"
             className="btn-login"
           >
+            <i className="bi bi-arrow-right-circle me-2"></i>
             Entrar
           </button>
         </div>
 
         {msg.length > 0 && (
-          <div className="alert alert-danger" role="alert" style={{ backgroundColor: 'rgba(255,107,107,0.2)', border: '1px solid #FF6B6B', color: '#FF6B6B' }}>
+          <div className="alert alert-danger" role="alert">
             {msg}
           </div>
         )}
 
         <div style={{ textAlign: 'center' }}>
-          <span style={{ color: 'rgba(255,255,255,0.6)' }}>Não tenho uma conta. </span>
+          <span style={{ color: '#64748b' }}>Não tenho uma conta. </span>
           <Link to="/register" className="login-link"> Criar conta agora.</Link>
         </div>
 

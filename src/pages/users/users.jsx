@@ -79,10 +79,11 @@ function Users() {
     <div className="container-fluid mt-page">
       <Navbar />
 
-      <div className="d-flex justify-content-between align-items-center">
+      <div className="d-flex justify-content-between align-items-center mb-4">
         <div>
-          <h2 className="d-inline">Pacientes</h2>
-          <Link to="/users/add" className="btn btn-outline-primary ms-5 mb-2">
+          <h2 className="mb-2">Pacientes</h2>
+          <Link to="/users/add" className="btn btn-primary">
+            <i className="bi bi-plus-lg me-2"></i>
             Novo Paciente
           </Link>
         </div>
@@ -103,34 +104,36 @@ function Users() {
           </select>
 
           <button onClick={loadUsers} className="filter-btn" type="submit">
+            <i className="bi bi-funnel me-1"></i>
             Filtrar
           </button>
         </div>
       </div>
 
-      <div>
-        <table className="table table-hover">
-          <thead className="bold">
-            <tr>
-              <th scope="col">Nome</th>
-              <th scope="col">E-mail</th>
-              <th scope="col">Telefone</th>
-              <th scope="col">CEP</th>
-              <th scope="col">Endereço</th>
-              <th scope="col">Num.</th>
-              <th scope="col">Complemento</th>
-              <th scope="col">Bairro</th>
-              <th scope="col">Cidade</th>
-              <th scope="col">UF</th>
-              <th scope="col" className="col-buttons"></th>
-            </tr>
-          </thead>
+      <div className="card p-0">
+        <div style={{ overflowX: 'auto' }}>
+          <table className="table table-hover mb-0">
+            <thead className="bold">
+              <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Telefone</th>
+                <th scope="col">CEP</th>
+                <th scope="col">Endereço</th>
+                <th scope="col">Num.</th>
+                <th scope="col">Complemento</th>
+                <th scope="col">Bairro</th>
+                <th scope="col">Cidade</th>
+                <th scope="col">UF</th>
+                <th scope="col" className="col-buttons"></th>
+              </tr>
+            </thead>
 
-          <tbody>
-            {users.map((user) => (
-              <User 
-                key={user.id_user}
-                id_user={user.id_user} // Passe o id_user aqui
+            <tbody>
+              {users.map((user) => (
+                <User 
+                  key={user.id_user}
+                  id_user={user.id_user} // Passe o id_user aqui
                 user={user.name}
                 email={user.email}
                 fone={user.fone}

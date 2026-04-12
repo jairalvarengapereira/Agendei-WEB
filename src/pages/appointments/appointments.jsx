@@ -110,10 +110,11 @@ function Appointments(){
   return <div className="container-fluid mt-page">
     <Navbar />
 
-    <div className="d-flex justify-content-between align-items-center">
+    <div className="d-flex justify-content-between align-items-center mb-4">
       <div>
-        <h2 className="d-inline">Agendamentos</h2>
-        <Link to="/appointments/add" className="btn btn-outline-primary ms-5 mb-2">
+        <h2 className="mb-2">Agendamentos</h2>
+        <Link to="/appointments/add" className="btn btn-primary">
+          <i className="bi bi-plus-lg me-2"></i>
           Novo Agendamento
         </Link>
       </div>
@@ -149,14 +150,15 @@ function Appointments(){
         </select>
 
         <button onClick={LoadAppointments} className="filter-btn" type="submit">
+          <i className="bi bi-funnel me-1"></i>
           Filtrar
         </button>
       </div>
 
     </div>
 
-    <div>
-      <table class="table table-hover">
+    <div className="card p-0">
+      <table class="table table-hover mb-0">
         <thead className="bold">
           <tr>
             <th scope="col">Paciente</th>
