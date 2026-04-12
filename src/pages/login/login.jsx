@@ -52,6 +52,7 @@ function Login() {
             type="email"
             placeholder="E-mail"
             className="form-control"
+            onClick={() => console.log("Email clicked")}
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
