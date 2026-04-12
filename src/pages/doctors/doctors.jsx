@@ -88,24 +88,22 @@ async function DeleteDoctors(id) {
           </Link>
         </div>
 
-        <div className="d-flex justify-content-end">
-          <div className="form-control ms-3">
-            <select 
-              name="doctor" 
-              id="doctor" 
-              value={idDoctor}
-              onChange={changeDoctor}          
-            >
-              <option value="">Todos os médicos</option>
-              {doctors.map((doc) => (
-                <option key={doc.id_doctor} value={doc.id_doctor}>
-                  {doc.name}
-                </option>
-              ))}
-            </select>
-          </div>
+        <div className="filter-row">
+          <select 
+            name="doctor" 
+            id="doctor" 
+            value={idDoctor}
+            onChange={changeDoctor}          
+          >
+            <option value="">Todos os médicos</option>
+            {doctors.map((doc) => (
+              <option key={doc.id_doctor} value={doc.id_doctor}>
+                {doc.name}
+              </option>
+            ))}
+          </select>
 
-          <button onClick={LoadDoctors} className="btn btn-primary ms-3" type="submit">
+          <button onClick={LoadDoctors} className="filter-btn" type="submit">
             Filtrar
           </button>
         </div>

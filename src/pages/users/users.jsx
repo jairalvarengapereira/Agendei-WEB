@@ -87,24 +87,22 @@ function Users() {
           </Link>
         </div>
 
-        <div className="d-flex justify-content-end">
-          <div className="form-control ms-3">
-            <select 
-              name="user" 
-              id="user" 
-              value={idUser}
-              onChange={changeUser}          
-            >
-              <option value="">Todos os pacientes</option>
-              {users.map((user) => (
-                <option key={user.id_user} value={user.id_user}>
-                  {user.name}
-                </option>
-              ))}
-            </select>
-          </div>
+        <div className="filter-row">
+          <select 
+            name="user" 
+            id="user" 
+            value={idUser}
+            onChange={changeUser}          
+          >
+            <option value="">Todos os pacientes</option>
+            {users.map((user) => (
+              <option key={user.id_user} value={user.id_user}>
+                {user.name}
+              </option>
+            ))}
+          </select>
 
-          <button onClick={loadUsers} className="btn btn-primary ms-3" type="submit">
+          <button onClick={loadUsers} className="filter-btn" type="submit">
             Filtrar
           </button>
         </div>

@@ -14,10 +14,10 @@
 }
 
 html, body{
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Nunito', sans-serif !important;
   overflow-x: hidden;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
 }
 
 .mt-page{
@@ -143,4 +143,135 @@ h1, h2, h3, h4, h5, h6 {
 
 .nav-link:hover {
   color: var(--primary) !important;
+}
+
+.table > tbody > tr {
+  background-color: #132B54 !important;
+  transition: background-color 0.2s;
+}
+
+.table > tbody > tr:hover {
+  background-color: #1A3A6E !important;
+}
+
+.table > tbody > tr > td {
+  background-color: #132B54 !important;
+  border-color: var(--border) !important;
+  vertical-align: middle !important;
+}
+
+table.table {
+  --bs-table-bg: #132B54 !important;
+  background-color: #132B54 !important;
+}
+
+table.table > thead > tr > th,
+table.table > tbody > tr > th,
+table.table > tfoot > tr > th,
+table.table > thead > tr > td,
+table.table > tbody > tr > td,
+table.table > tfoot > tr > td {
+  background-color: #132B54 !important;
+}
+
+.table td {
+  border-color: var(--border);
+  vertical-align: middle;
+}
+
+.btn-action {
+  padding: 8px 10px !important;
+  font-size: 14px !important;
+  border-radius: 6px !important;
+  margin: 0 2px !important;
+  min-width: 36px !important;
+  height: auto !important;
+  line-height: 1 !important;
+}
+
+.btn-action.btn-primary,
+.btn-action.btn-danger {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 36px !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  background-color: var(--bg-surface);
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+.filter-row select {
+  background-color: var(--bg-surface-light) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text-primary) !important;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  min-width: 150px;
+  width: auto;
+}
+
+.filter-row button.filter-btn,
+button.filter-btn {
+  background-color: #0D6EFD !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  padding: 8px 16px !important;
+  border-radius: 8px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  cursor: pointer;
+  white-space: nowrap;
+  display: inline-block !important;
+  height: auto !important;
+  line-height: normal !important;
+  min-height: unset !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+}
+
+.filter-btn::-moz-focus-inner {
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+.filter-btn:hover {
+  background-color: var(--primary-dim);
+}
+
+@media (max-width: 768px) {
+  .filter-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .filter-row select,
+  .filter-btn {
+    width: 100%;
+  }
+}
+
+.filter-row input[type="date"] {
+  background-color: var(--bg-surface-light);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  width: 140px;
+}
+
+.date-separator {
+  color: var(--text-secondary);
+  font-size: 14px;
 }
