@@ -80,19 +80,17 @@ function Navbar(){
                   </li>
                   <li><hr className="dropdown-divider" /></li>
                   <li>
-                    <button 
-                      type="button"
+                    <Link 
+                      to="/" 
                       className="dropdown-item d-flex align-items-center gap-2 text-danger"
-                      onClick={() => {
+                      replace
+                      onClick={(e) => {
                         localStorage.clear();
-                        setTimeout(() => {
-                          window.location.href = '/';
-                        }, 10);
                       }}
                     >
                       <i className="bi bi-box-arrow-right"></i>
                       Desconectar
-                    </button>
+                    </Link>
                   </li>
                 </ul>
               </div>
