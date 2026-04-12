@@ -11,7 +11,7 @@ function AppointmentAdd(){
   // Variáveis de estado
   const [users, setUsers] = useState([])
   const [doctors, setDoctors] = useState([])
-  const [services, setServices] = useState([])
+  const [allServices, setAllServices] = useState([])
 
   // Variáveis que estão atreladas a seus respectivos destinos
   const [idUser, setIdUser] = useState("")
@@ -21,10 +21,8 @@ function AppointmentAdd(){
   const [bookingHour, setBookingHour] = useState("")
   
   async function loadAppointment(id){
-
     try{
       const response = await api.get(`/admin/appointments/${id}`);
-
       if (response.data) {
         setIdUser(response.data.id_user);
         setIdDoctor(response.data.id_doctor);
@@ -32,7 +30,6 @@ function AppointmentAdd(){
         setBookingDate(response.data.booking_date);
         setBookingHour(response.data.booking_hour);
       }
-
     } catch (error) {
       if(error.response?.data.error){
         if (error.response.status == 401)
@@ -61,13 +58,13 @@ function AppointmentAdd(){
     }
   }
 
-  async function loadDoctors(){
+  async function loadAllServices(){
     try{
-      const response = await api.get("/doctors");
+      const response = await api.get("/services");
       if (response.data) {
-        setDoctors(response.data);
-
-        // mode de alteração
+        setAllServices(response.data);
+        
+        // modo de alteração
         if(id_appointment){
           loadAppointment(id_appointment)
         }
@@ -78,20 +75,22 @@ function AppointmentAdd(){
           return navigate('/');
         alert(error.response.data.error);
       } else {
-        alert("Erro ao listar médicos");
+        alert("Erro ao listar serviços");
       }
     }
   }
 
-
-  async function loadServices(id){
-    if(!id)
+  async function loadDoctorsByService(id_service){
+    if(!id_service){
+      setDoctors([]);
+      setIdDoctor("");
       return;
+    }
 
     try{
-      const response = await api.get(`/doctors/${id}/services`);
+      const response = await api.get(`/services/${id_service}/doctors`);
       if (response.data) {
-        setServices(response.data);
+        setDoctors(response.data);
       }
     } catch (error) {
       if(error.response?.data.error){
@@ -99,7 +98,7 @@ function AppointmentAdd(){
           return navigate('/');
         alert(error.response.data.error);
       } else {
-      alert("Erro ao listar serviços");
+      alert("Erro ao listar médicos");
       }
     }
   }
@@ -113,10 +112,9 @@ function AppointmentAdd(){
     };
 
     try{
-
       const response =  id_appointment > 0 
-                        ? await api.post("/admin/appointments/" + id_appointment, json) // Edição
-                        : await api.post("/admin/appointments", json); // Inserção
+                        ? await api.post("/admin/appointments/" + id_appointment, json) 
+                        : await api.post("/admin/appointments", json); 
 
       if (response.data) {
         navigate("/appointments");
@@ -133,15 +131,17 @@ function AppointmentAdd(){
     }
   }
 
+  function handleServiceChange(e){
+    const serviceId = e.target.value;
+    setIdService(serviceId);
+    setIdDoctor("");
+    loadDoctorsByService(serviceId);
+  }
+
   useEffect(()=>{
     loadUsers();
-    loadDoctors();
-  },[]) // Adicionei um array de dependências vazio ("[]") para garantir que as funções sejam  chamadas apenas uma vez. Do contrário, de tempos em tempos exibe erro em consulta de pacientes e médicos.
-
-  useEffect(()=>{
-    loadServices(idDoctor);
-  },[idDoctor]) // Carrega todos os services referentes ao médico selecionado.
-
+    loadAllServices();
+  },[])
 
   return<>
     <Navbar />
@@ -175,40 +175,41 @@ function AppointmentAdd(){
           </select>
         </div>
 
-        {/* Médicos */}
+        {/* Especialidade/Serviço */}
         <div className="col-12 mt-4">
-          <label htmlFor="doctor" className="form-label">Médico</label>
+          <label htmlFor="service" className="form-label">Especialidade</label>
           <select 
-            name="doctor" 
-            id="doctor" 
+            name="service" 
+            id="service" 
             className="form-select"
-            value={idDoctor}
-            onChange={(e) => setIdDoctor(e.target.value)}  
+            value={idService}
+            onChange={handleServiceChange}  
           >
-            <option value="">Selecione o médico</option>{
-              doctors.map((doc) => (
-                <option key={doc.id_doctor} value={doc.id_doctor}>
-                  {doc.name}
+            <option value="">Selecione a especialidade</option>{
+              allServices.map((s) => (
+                <option key={s.id_service} value={s.id_service}>
+                  {s.description}
                 </option>
               ))
             }
           </select>
         </div>
 
-        {/* Serviços */}
+        {/* Médicos */}
         <div className="col-12 mt-3">
-          <label htmlFor="service" className="form-label">Serviços</label>
+          <label htmlFor="doctor" className="form-label">Médico</label>
           <select 
-            name="service" 
-            id="service" 
+            name="doctor" 
+            id="doctor" 
             className="form-select"
-            value={idService}
-            onChange={(e) => setIdService(e.target.value)}  
+            value={idDoctor}
+            onChange={(e) => setIdDoctor(e.target.value)}
+            disabled={!idService}
           >
-            <option value="">Selecione o serviço</option>{
-              services.map((s) => (
-                <option key={s.id_service} value={s.id_service}>
-                  {s.description}
+            <option value="">{idService ? "Selecione o médico" : "Selecione uma especialidade primeiro"}</option>{
+              doctors.map((doc) => (
+                <option key={doc.id_doctor} value={doc.id_doctor}>
+                  {doc.name}
                 </option>
               ))
             }
