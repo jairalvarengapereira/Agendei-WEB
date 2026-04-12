@@ -11,63 +11,25 @@ import Profile from "./pages/profile/profile.jsx";
 import Services from "./pages/services/services.jsx";
 import ServicesAdd from "./pages/services-add/services-add.jsx";
 
-function ProtectedRoute({ children }) {
-  const token = localStorage.getItem('sessionToken');
-  if (!token) {
-    window.location.href = "/";
-    return null;
-  }
-  return children;
-}
-
 function Rotas() {
   return (
     <BrowserRouter>
-      {/* URIs */}
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        
-        {/* Rotas protegidas */}
-        <Route path="/profile" element={
-          <ProtectedRoute><Profile /></ProtectedRoute>
-        } />
-        <Route path="/appointments" element={
-          <ProtectedRoute><Appointments /></ProtectedRoute>
-        } />
-        <Route path="/appointments/add" element={
-          <ProtectedRoute><AppointmentAdd /></ProtectedRoute>
-        } />
-        <Route path="/appointments/edit/:id_appointment" element={
-          <ProtectedRoute><AppointmentAdd /></ProtectedRoute>
-        } />
-        <Route path="/doctors" element={
-          <ProtectedRoute><Doctors /></ProtectedRoute>
-        } />
-        <Route path="/doctors/add" element={
-          <ProtectedRoute><DoctorsAdd /></ProtectedRoute>
-        } />
-        <Route path="/doctors/edit/:id_doctor" element={
-          <ProtectedRoute><DoctorsAdd /></ProtectedRoute>
-        } />
-        <Route path="/users/" element={
-          <ProtectedRoute><Users /></ProtectedRoute>
-        } />
-        <Route path="/users/add" element={
-          <ProtectedRoute><UsersAdd /></ProtectedRoute>
-        } />
-        <Route path="/users/edit/:id_user" element={
-          <ProtectedRoute><UsersAdd /></ProtectedRoute>
-        } />
-        <Route path="/services" element={
-          <ProtectedRoute><Services /></ProtectedRoute>
-        } />
-        <Route path="/services/add" element={
-          <ProtectedRoute><ServicesAdd /></ProtectedRoute>
-        } />
-        <Route path="/services/edit/:id_service" element={
-          <ProtectedRoute><ServicesAdd /></ProtectedRoute>
-        } />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/appointments" element={<Appointments />} />
+        <Route path="/appointments/add" element={<AppointmentAdd />} />
+        <Route path="/appointments/edit/:id_appointment" element={<AppointmentAdd />} />
+        <Route path="/doctors" element={<Doctors />} />
+        <Route path="/doctors/add" element={<DoctorsAdd />} />
+        <Route path="/doctors/edit/:id_doctor" element={<DoctorsAdd />} />
+        <Route path="/users/" element={<Users />} />
+        <Route path="/users/add" element={<UsersAdd />} />
+        <Route path="/users/edit/:id_user" element={<UsersAdd />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/services/add" element={<ServicesAdd />} />
+        <Route path="/services/edit/:id_service" element={<ServicesAdd />} />
       </Routes>
     </BrowserRouter>
   );
