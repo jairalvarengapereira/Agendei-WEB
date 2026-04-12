@@ -5,6 +5,7 @@ import logo from "../../assets/images/Logo.png";
 import api from "../../constantes/api.js";
 
 function Login() {
+  console.log("Login component rendering");
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
